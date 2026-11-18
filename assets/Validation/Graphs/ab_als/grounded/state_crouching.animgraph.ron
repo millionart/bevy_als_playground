@@ -1,0 +1,13 @@
+(
+    nodes: [
+        (id: "17030000-0000-4000-8000-000000000001", name: "Use cached pose 'Crouching'", inner: { "als_ext::SourceScopedCachedPoseUseNode": (cache_node: "Save cached pose 'Crouching'", cache_key: "ab_als_grounded:crouching", context_defaults: [(curve: "PoseStanding", value: 0.0)]) }, should_debug: false),
+        (id: "17030000-0000-4000-8000-000000000002", name: "ResetGroundedEntryMode\nOn Become Relevant", inner: { "als_ext::SourcePosePassthroughNode": (input: "Source", output: "Pose", input_time: "source_time", output_time: false, source_function: "ResetGroundedEntryMode", call_site: "On Become Relevant") }, should_debug: false),
+    ],
+    edges_inverted: {
+        NodeData("17030000-0000-4000-8000-000000000002", "Source"): NodeData("17030000-0000-4000-8000-000000000001", "Pose"),
+        OutputData("Result"): NodeData("17030000-0000-4000-8000-000000000002", "Pose"),
+    },
+    io_spec: (input_times: [], input_data: {}, output_time: false, output_data: { "Result": Pose }, input_order: {}, output_order: { Data("Result"): 0 }),
+    default_data: {},
+    editor_metadata: (node_positions: { "17030000-0000-4000-8000-000000000001": (-528.0, 0.0), "17030000-0000-4000-8000-000000000002": (-256.0, -16.0) }, input_position: (0.0, 0.0), output_position: (0.0, 0.0), input_param_order: {}, input_time_order: {}, output_data_order: {}, output_pose_order: {}),
+)

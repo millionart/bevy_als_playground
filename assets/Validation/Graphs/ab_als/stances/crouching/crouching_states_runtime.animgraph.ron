@@ -1,0 +1,66 @@
+(
+    nodes: [
+        (
+            id: "15620000-0000-4000-8000-000000000001",
+            name: "crouching states runtime",
+            inner: {
+                "als_ext::InterruptibleFsmNode": (
+                    fsm: "Validation/Graphs/ab_als/stances/crouching/crouching_states.fsm.ron",
+                    state_pose_output: "Result",
+                ),
+            },
+            should_debug: false,
+        ),
+        (
+            id: "15620000-0000-4000-8000-000000000002",
+            name: "crouching transition driver",
+            inner: {
+                "als_ext::DirectTransitionEventNode": (
+                    key: "als_crouching_transition_index",
+                    default_value: -1.0,
+                    transitions: [
+                        ("16100000-0000-4000-8000-000000000103"),
+                        ("16100000-0000-4000-8000-000000000106"),
+                        ("16100000-0000-4000-8000-000000000107"),
+                        ("16100000-0000-4000-8000-000000000102"),
+                        ("16100000-0000-4000-8000-000000000109"),
+                        ("16100000-0000-4000-8000-000000000110"),
+                        ("16100000-0000-4000-8000-000000000108"),
+                        ("16100000-0000-4000-8000-000000000111"),
+                        ("16100000-0000-4000-8000-000000000101"),
+                        ("16100000-0000-4000-8000-000000000105"),
+                        ("16100000-0000-4000-8000-000000000104"),
+                        ("16100000-0000-4000-8000-000000000112"),
+                    ],
+                ),
+            },
+            should_debug: false,
+        ),
+    ],
+    edges_inverted: {
+        NodeData("15620000-0000-4000-8000-000000000001", "driver_events"): NodeData("15620000-0000-4000-8000-000000000002", "event"),
+        OutputData("pose"): NodeData("15620000-0000-4000-8000-000000000001", "pose"),
+        OutputTime: NodeTime("15620000-0000-4000-8000-000000000001"),
+    },
+    io_spec: (
+        input_times: [],
+        input_data: {},
+        output_time: true,
+        output_data: { "pose": Pose },
+        input_order: {},
+        output_order: { Data("pose"): 0, Time: 1 },
+    ),
+    default_data: {},
+    editor_metadata: (
+        node_positions: {
+            "15620000-0000-4000-8000-000000000001": (0.0, 0.0),
+            "15620000-0000-4000-8000-000000000002": (-320.0, 0.0),
+        },
+        input_position: (0.0, 0.0),
+        output_position: (320.0, 0.0),
+        input_param_order: {},
+        input_time_order: {},
+        output_data_order: {},
+        output_pose_order: {},
+    ),
+)

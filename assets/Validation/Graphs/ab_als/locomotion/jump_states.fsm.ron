@@ -1,0 +1,25 @@
+(
+    states: [
+        (id: "18130000-0000-4000-8000-000000000001", label: "Entry Conduit", graph: "Validation/Graphs/ab_als/locomotion/state_jump_entry.animgraph.ron", state_transition: None),
+        (id: "18130000-0000-4000-8000-000000000002", label: "Left Foot", graph: "Validation/Graphs/ab_als/locomotion/state_jump_left.animgraph.ron", state_transition: None),
+        (id: "18130000-0000-4000-8000-000000000003", label: "Right Foot", graph: "Validation/Graphs/ab_als/locomotion/state_jump_right.animgraph.ron", state_transition: None),
+        (id: "18130000-0000-4000-8000-000000000004", label: "Loop", graph: "Validation/Graphs/ab_als/locomotion/state_jump_loop.animgraph.ron", state_transition: None),
+        (id: "18130000-0000-4000-8000-000000000005", label: "Flail", graph: "Validation/Graphs/ab_als/locomotion/state_jump_flail.animgraph.ron", state_transition: None),
+    ],
+    transitions: [
+        (id: "18140000-0000-4000-8000-000000000100", source: "18130000-0000-4000-8000-000000000001", target: "18130000-0000-4000-8000-000000000003", data: (kind: Graph(graph: "Validation/Graphs/ab_als/locomotion/jump_transition_standard_02.animgraph.ron", timed: Some(0.2)), ignore_external_events: false, reset_target_state: true)),
+        (id: "18140000-0000-4000-8000-000000000101", source: "18130000-0000-4000-8000-000000000001", target: "18130000-0000-4000-8000-000000000002", data: (kind: Graph(graph: "Validation/Graphs/ab_als/locomotion/jump_transition_standard_02.animgraph.ron", timed: Some(0.2)), ignore_external_events: false, reset_target_state: true)),
+        (id: "18140000-0000-4000-8000-000000000102", source: "18130000-0000-4000-8000-000000000002", target: "18130000-0000-4000-8000-000000000004", data: (kind: Graph(graph: "Validation/Graphs/ab_als/locomotion/jump_transition_inertial_02.animgraph.ron", timed: Some(0.2)), ignore_external_events: false, reset_target_state: true)),
+        (id: "18140000-0000-4000-8000-000000000103", source: "18130000-0000-4000-8000-000000000003", target: "18130000-0000-4000-8000-000000000004", data: (kind: Graph(graph: "Validation/Graphs/ab_als/locomotion/jump_transition_inertial_02.animgraph.ron", timed: Some(0.2)), ignore_external_events: false, reset_target_state: true)),
+        (id: "18140000-0000-4000-8000-000000000104", source: "18130000-0000-4000-8000-000000000004", target: "18130000-0000-4000-8000-000000000005", data: (kind: Graph(graph: "Validation/Graphs/ab_als/locomotion/jump_transition_standard_02.animgraph.ron", timed: Some(1.0)), ignore_external_events: false, reset_target_state: true)),
+    ],
+    start_state: "18130000-0000-4000-8000-000000000001",
+    node_spec: (input_times: [], input_data: {}, output_time: true, output_data: { "pose": Pose }, input_order: {}, output_order: { Data("pose"): 0, Time: 1 }),
+    editor_metadata: (states: {
+        "18130000-0000-4000-8000-000000000001": (176.0, 0.0),
+        "18130000-0000-4000-8000-000000000002": (416.0, -64.0),
+        "18130000-0000-4000-8000-000000000003": (416.0, 64.0),
+        "18130000-0000-4000-8000-000000000004": (640.0, 0.0),
+        "18130000-0000-4000-8000-000000000005": (816.0, 0.0),
+    }),
+)

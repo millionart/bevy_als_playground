@@ -1,0 +1,9 @@
+pub const OPTION_WIDTH_PX: f32 = 200.0;
+pub const OPTION_HEIGHT_PX: f32 = 25.0;
+pub const OPTION_GAP_PX: f32 = 4.0;
+pub const OPTION_FONT_SIZE_PX: f32 = 18.666666666666668;
+pub const OPTION_HORIZONTAL_PADDING_PX: f32 = 4.0;
+pub const COLOR_MENU_BACKGROUND: Color = Color::linear_rgba(0.015, 0.015, 0.015, 0.25);
+pub const COLOR_MENU_TEXT: Color = Color::linear_rgba(1.0, 1.0, 1.0, 1.0);
+pub const COLOR_OPTION_SELECTED: Color = Color::linear_rgba(0.15, 0.15, 0.15, 0.5);
+pub const COLOR_OPTION_NOT_SELECTED: Color = Color::linear_rgba(0.015, 0.015, 0.015, 0.5);

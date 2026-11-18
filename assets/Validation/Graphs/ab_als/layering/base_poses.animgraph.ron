@@ -1,0 +1,33 @@
+(
+    nodes: [
+        (id: "19010000-0000-4000-8000-000000000001", name: "standing pose clip", inner: { "bevy_animation_graph::builtin_nodes::ClipNode": (clip: "ALS/Animations/Base/A_Als_Stand_Pose.anim.ron", override_duration: None, override_interpolation: None) }, should_debug: false),
+        (id: "19010000-0000-4000-8000-000000000002", name: "crouching pose clip", inner: { "bevy_animation_graph::builtin_nodes::ClipNode": (clip: "ALS/Animations/Base/A_Als_Crouch_Pose.anim.ron", override_duration: None, override_interpolation: None) }, should_debug: false),
+        (id: "19010000-0000-4000-8000-000000000003", name: "explicit frame zero", inner: { "als_ext::ConstantF32Node": (value: 0.0) }, should_debug: false),
+        (id: "19010000-0000-4000-8000-000000000009", name: "crouching explicit frame zero", inner: { "als_ext::ConstantF32Node": (value: 0.0) }, should_debug: false),
+        (id: "19010000-0000-4000-8000-000000000004", name: "standing pose evaluator", inner: { "als_ext::TimePositionNode": (duration_fallback: 0.033333335, loop_position: false) }, should_debug: false),
+        (id: "19010000-0000-4000-8000-000000000005", name: "crouching pose evaluator", inner: { "als_ext::TimePositionNode": (duration_fallback: 0.033333335, loop_position: false) }, should_debug: false),
+        (id: "19010000-0000-4000-8000-000000000006", name: "standing amount", inner: { "als_ext::GlobalF32InputNode": (key: "als_layering_standing_amount") }, should_debug: false),
+        (id: "19010000-0000-4000-8000-000000000007", name: "crouching amount", inner: { "als_ext::GlobalF32InputNode": (key: "als_layering_crouching_amount") }, should_debug: false),
+        (id: "19010000-0000-4000-8000-000000000008", name: "base poses multi way blend", inner: { "als_ext::MultiWayBlendNode": (pose_count: 2, normalize_alpha: true) }, should_debug: false),
+    ],
+    edges_inverted: {
+        NodeData("19010000-0000-4000-8000-000000000004", "position"): NodeData("19010000-0000-4000-8000-000000000003", "value"), NodeData("19010000-0000-4000-8000-000000000004", "pose"): NodeData("19010000-0000-4000-8000-000000000001", "pose"), NodeTime("19010000-0000-4000-8000-000000000004", "time"): NodeTime("19010000-0000-4000-8000-000000000001"),
+        NodeData("19010000-0000-4000-8000-000000000005", "position"): NodeData("19010000-0000-4000-8000-000000000009", "value"), NodeData("19010000-0000-4000-8000-000000000005", "pose"): NodeData("19010000-0000-4000-8000-000000000002", "pose"), NodeTime("19010000-0000-4000-8000-000000000005", "time"): NodeTime("19010000-0000-4000-8000-000000000002"),
+        NodeData("19010000-0000-4000-8000-000000000008", "pose_0"): NodeData("19010000-0000-4000-8000-000000000004", "pose"), NodeTime("19010000-0000-4000-8000-000000000008", "time_0"): NodeTime("19010000-0000-4000-8000-000000000004"), NodeData("19010000-0000-4000-8000-000000000008", "weight_0"): NodeData("19010000-0000-4000-8000-000000000006", "als_layering_standing_amount"),
+        NodeData("19010000-0000-4000-8000-000000000008", "pose_1"): NodeData("19010000-0000-4000-8000-000000000005", "pose"), NodeTime("19010000-0000-4000-8000-000000000008", "time_1"): NodeTime("19010000-0000-4000-8000-000000000005"), NodeData("19010000-0000-4000-8000-000000000008", "weight_1"): NodeData("19010000-0000-4000-8000-000000000007", "als_layering_crouching_amount"),
+        OutputData("pose"): NodeData("19010000-0000-4000-8000-000000000008", "pose"), OutputTime: NodeTime("19010000-0000-4000-8000-000000000008"),
+    },
+    io_spec: (input_times: [], input_data: {}, output_time: true, output_data: { "pose": Pose }, input_order: {}, output_order: { Data("pose"): 0, Time: 1 }),
+    default_data: {},
+    editor_metadata: (node_positions: {
+        "19010000-0000-4000-8000-000000000001": (-1952.000, -2272.000),
+        "19010000-0000-4000-8000-000000000002": (-1952.000, -2144.000),
+        "19010000-0000-4000-8000-000000000003": (-2208.000, -2176.000),
+        "19010000-0000-4000-8000-000000000009": (-2208.000, -2048.000),
+        "19010000-0000-4000-8000-000000000006": (-1952.000, -2176.000),
+        "19010000-0000-4000-8000-000000000007": (-1952.000, -2080.000),
+        "19010000-0000-4000-8000-000000000004": (-2208.000, -2272.000),
+        "19010000-0000-4000-8000-000000000005": (-2208.000, -2144.000),
+        "19010000-0000-4000-8000-000000000008": (-1952.000, -1984.000),
+    }, input_position: (0.0, 0.0), output_position: (320.0, 0.0), input_param_order: {}, input_time_order: {}, output_data_order: {}, output_pose_order: {}),
+)

@@ -1,0 +1,44 @@
+(
+    nodes: [
+        (id: "150b0000-0000-4000-8000-000000000001", name: "standing movement details", inner: { "als_ext::InterruptibleFsmNode": (fsm: "Validation/Graphs/ab_als/stances/standing/movement_details.fsm.ron", state_pose_output: "Result") }, should_debug: false),
+        (id: "150b0000-0000-4000-8000-000000000002", name: "standing movement details driver", inner: { "als_ext::DirectTransitionEventNode": (key: "als_standing_movement_detail_transition_index", transitions: [("15300000-0000-4000-8000-000000000101"), ("15300000-0000-4000-8000-000000000128"), ("15300000-0000-4000-8000-000000000115"), ("15300000-0000-4000-8000-000000000112"), ("15300000-0000-4000-8000-000000000122"), ("15300000-0000-4000-8000-000000000104"), ("15300000-0000-4000-8000-000000000103"), ("15300000-0000-4000-8000-000000000106"), ("15300000-0000-4000-8000-000000000117"), ("15300000-0000-4000-8000-000000000110"), ("15300000-0000-4000-8000-000000000127")]) }, should_debug: false),
+    ],
+    edges_inverted: {
+        NodeData("150b0000-0000-4000-8000-000000000001", "driver_events"): NodeData("150b0000-0000-4000-8000-000000000002", "event"),
+        NodeData("150b0000-0000-4000-8000-000000000001", "direction_index"): InputData(Passthrough("direction_index")),
+        OutputData("pose"): NodeData("150b0000-0000-4000-8000-000000000001", "pose"),
+        OutputTime: NodeTime("150b0000-0000-4000-8000-000000000001"),
+    },
+    io_spec: (
+        input_times: [],
+        input_data: {
+            Passthrough("direction_index"): F32,
+        },
+        output_time: true,
+        output_data: {
+            "pose": Pose,
+        },
+        input_order: {
+            Data(Passthrough("direction_index")): 0,
+        },
+        output_order: {
+            Data("pose"): 0,
+            Time: 1,
+        },
+    ),
+    default_data: {
+        Passthrough("direction_index"): F32(0.0),
+    },
+    editor_metadata: (
+        node_positions: {
+            "150b0000-0000-4000-8000-000000000002": (-202.000, 388.000),
+            "150b0000-0000-4000-8000-000000000001": (149.000, 216.000),
+        },
+        input_position: (0.0, 0.0),
+        output_position: (320.0, 0.0),
+        input_param_order: {},
+        input_time_order: {},
+        output_data_order: {},
+        output_pose_order: {},
+    ),
+)

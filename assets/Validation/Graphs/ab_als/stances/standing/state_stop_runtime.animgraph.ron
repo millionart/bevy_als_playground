@@ -1,0 +1,36 @@
+(
+    nodes: [
+        (id: "15031000-0000-4000-8000-000000000001", name: "standing stop source graph", inner: { "als_ext::LayeredGraphNode": (
+            graph: "Validation/Graphs/ab_als/stances/standing/state_stop.animgraph.ron",
+            output_aliases: [(child_output: "Result", outer_output: "pose")],
+            internalize_time: true,
+        ) }, should_debug: false),
+        (id: "15031000-0000-4000-8000-000000000002", name: "standing stop runtime timestamp", inner: { "als_ext::PoseTimestampNode": (input: "Source", output: "pose") }, should_debug: false),
+    ],
+    edges_inverted: {
+        NodeData("15031000-0000-4000-8000-000000000002", "Source"): NodeData("15031000-0000-4000-8000-000000000001", "pose"),
+        OutputData("pose"): NodeData("15031000-0000-4000-8000-000000000002", "pose"),
+        OutputTime: NodeTime("15031000-0000-4000-8000-000000000002"),
+    },
+    io_spec: (
+        input_times: [],
+        input_data: {},
+        output_time: true,
+        output_data: { "pose": Pose },
+        input_order: {},
+        output_order: { Data("pose"): 0, Time: 1 },
+    ),
+    default_data: {},
+    editor_metadata: (
+        node_positions: {
+            "15031000-0000-4000-8000-000000000001": (-256.0, 0.0),
+            "15031000-0000-4000-8000-000000000002": (0.0, 0.0),
+        },
+        input_position: (0.0, 0.0),
+        output_position: (320.0, 0.0),
+        input_param_order: {},
+        input_time_order: {},
+        output_data_order: {},
+        output_pose_order: {},
+    ),
+)

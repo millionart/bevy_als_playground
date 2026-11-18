@@ -1,0 +1,23 @@
+(
+    nodes: [
+        (id: "19020000-0000-4000-8000-000000000001", name: "Base Poses", inner: { "als_ext::LayeredGraphNode": (graph: "Validation/Graphs/ab_als/layering/base_poses.animgraph.ron") }, should_debug: false),
+        (id: "19020000-0000-4000-8000-000000000002", name: "local dynamic additive", inner: { "bevy_animation_graph::builtin_nodes::BlendNode": (mode: Difference, sync_mode: Absolute, blend_primary: First, use_bone_mask: false) }, should_debug: false),
+        (id: "19020000-0000-4000-8000-000000000003", name: "local dynamic additive factor", inner: { "als_ext::ConstantF32Node": (value: 1.0) }, should_debug: false),
+    ],
+    edges_inverted: {
+        NodeData("19020000-0000-4000-8000-000000000002", "factor"): NodeData("19020000-0000-4000-8000-000000000003", "value"),
+        NodeData("19020000-0000-4000-8000-000000000002", "pose_a"): NodeData("19020000-0000-4000-8000-000000000001", "pose"), NodeTime("19020000-0000-4000-8000-000000000002", "time_a"): NodeTime("19020000-0000-4000-8000-000000000001"),
+        NodeData("19020000-0000-4000-8000-000000000002", "pose_b"): InputData(Passthrough("locomotion_pose")), NodeTime("19020000-0000-4000-8000-000000000002", "time_b"): InputTime(Passthrough("locomotion_time")),
+        OutputData("pose"): NodeData("19020000-0000-4000-8000-000000000002", "pose"), OutputTime: NodeTime("19020000-0000-4000-8000-000000000002"),
+    },
+    io_spec: (input_times: [Passthrough("locomotion_time")], input_data: { Passthrough("locomotion_pose"): Pose }, output_time: true, output_data: { "pose": Pose }, input_order: {
+        Time(Passthrough("locomotion_time")): 0,
+        Data(Passthrough("locomotion_pose")): 1,
+    }, output_order: { Data("pose"): 0, Time: 1 }),
+    default_data: {},
+    editor_metadata: (node_positions: {
+        "19020000-0000-4000-8000-000000000001": (-1632.000, -1824.000),
+        "19020000-0000-4000-8000-000000000003": (-1888.000, -64.000),
+        "19020000-0000-4000-8000-000000000002": (-288.000, -1184.000),
+    }, input_position: (0.0, 0.0), output_position: (320.0, 0.0), input_param_order: {}, input_time_order: {}, output_data_order: {}, output_pose_order: {}),
+)

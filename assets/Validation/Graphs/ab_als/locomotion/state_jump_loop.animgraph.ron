@@ -1,0 +1,20 @@
+(
+    nodes: [
+        (id: "18080000-0000-4000-8000-000000000001", name: "jump loop clip", inner: { "bevy_animation_graph::builtin_nodes::ClipNode": (clip: "ALS/Animations/Air/Jump/A_Als_Jump_Loop.anim.ron", override_duration: None, override_interpolation: None) }, should_debug: false),
+        (id: "18080000-0000-4000-8000-000000000002", name: "jump loop", inner: { "bevy_animation_graph::builtin_nodes::LoopNode": (interpolation_period: 0.0) }, should_debug: false),
+        (id: "18080000-0000-4000-8000-000000000003", name: "jump loop marker player", inner: { "als_ext::SyncGroupSampleNode": (leader_duration: 0.666667, leader_markers: [], follower_duration: 0.666667, follower_markers: [], looped: true) }, should_debug: false),
+        (id: "18080000-0000-4000-8000-000000000004", name: "flail movement phase", inner: { "als_ext::GlobalF32InputNode": (key: "als_locomotion_flail_phase") }, should_debug: false),
+    ],
+    edges_inverted: {
+        NodeData("18080000-0000-4000-8000-000000000002", "pose"): NodeData("18080000-0000-4000-8000-000000000001", "pose"), NodeTime("18080000-0000-4000-8000-000000000002", "time"): NodeTime("18080000-0000-4000-8000-000000000001"),
+        NodeData("18080000-0000-4000-8000-000000000003", "phase"): NodeData("18080000-0000-4000-8000-000000000004", "als_locomotion_flail_phase"), NodeData("18080000-0000-4000-8000-000000000003", "pose"): NodeData("18080000-0000-4000-8000-000000000002", "pose"), NodeTime("18080000-0000-4000-8000-000000000003", "time"): NodeTime("18080000-0000-4000-8000-000000000002"),
+        OutputData("pose"): NodeData("18080000-0000-4000-8000-000000000003", "pose"), OutputTime: NodeTime("18080000-0000-4000-8000-000000000003"),
+    },
+    io_spec: (input_times: [], input_data: {}, output_time: true, output_data: { "pose": Pose }, input_order: {}, output_order: { Data("pose"): 0, Time: 1 }), default_data: {},
+    editor_metadata: (node_positions: {
+        "18080000-0000-4000-8000-000000000001": (-384.000, -32.000),
+        "18080000-0000-4000-8000-000000000004": (-384.000, 64.000),
+        "18080000-0000-4000-8000-000000000002": (-128.000, -32.000),
+        "18080000-0000-4000-8000-000000000003": (-384.000, 160.000),
+    }, input_position: (0.0, 0.0), output_position: (320.0, 0.0), input_param_order: {}, input_time_order: {}, output_data_order: {}, output_pose_order: {}),
+)

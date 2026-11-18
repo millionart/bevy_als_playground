@@ -1,0 +1,26 @@
+(
+    nodes: [
+        (id: "16340000-0000-4000-8000-000000000001", name: "crouching quick feet transition", inner: { "als_ext::ProfiledBlendNode": (curve_names: [], bone_scales: [], alpha_blend_mode: HermiteCubic, custom_curve: []) }, should_debug: false),
+    ],
+    edges_inverted: {
+        NodeData("16340000-0000-4000-8000-000000000001", "factor"): InputData(FsmBuiltin(PercentThroughDuration)),
+        NodeData("16340000-0000-4000-8000-000000000001", "pose_a"): InputData(FromFsmSource("pose")),
+        NodeTime("16340000-0000-4000-8000-000000000001", "time_a"): InputTime(FromFsmSource("time")),
+        NodeData("16340000-0000-4000-8000-000000000001", "pose_b"): InputData(FromFsmTarget("pose")),
+        NodeTime("16340000-0000-4000-8000-000000000001", "time_b"): InputTime(FromFsmTarget("time")),
+        OutputData("pose"): NodeData("16340000-0000-4000-8000-000000000001", "pose"),
+        OutputTime: NodeTime("16340000-0000-4000-8000-000000000001"),
+    },
+    io_spec: (
+        input_times: [FromFsmSource("time"), FromFsmTarget("time")],
+        input_data: { FsmBuiltin(PercentThroughDuration): F32, FromFsmSource("pose"): Pose, FromFsmTarget("pose"): Pose },
+        output_time: true,
+        output_data: { "pose": Pose },
+        input_order: { Data(FsmBuiltin(PercentThroughDuration)): 0, Data(FromFsmSource("pose")): 1, Time(FromFsmSource("time")): 2, Data(FromFsmTarget("pose")): 3, Time(FromFsmTarget("time")): 4 },
+        output_order: { Data("pose"): 0, Time: 1 },
+    ),
+    default_data: {},
+    editor_metadata: (node_positions: {
+        "16340000-0000-4000-8000-000000000001": (176.000, 0.000),
+    }, input_position: (0.0, 0.0), output_position: (320.0, 0.0), input_param_order: {}, input_time_order: {}, output_data_order: {}, output_pose_order: {}),
+)

@@ -1,0 +1,9 @@
+(
+    nodes: [
+        (id: "17100000-0000-4000-8000-000000000001", name: "standing alias runtime pose", inner: { "als_ext::SourceScopedCachedPoseUseNode": (cache_node: "Save cached pose 'Standing'", cache_key: "ab_als_grounded:standing", context_defaults: [(curve: "PoseCrouching", value: 0.0)]) }, should_debug: false),
+    ],
+    edges_inverted: { OutputData("Result"): NodeData("17100000-0000-4000-8000-000000000001", "Pose") },
+    io_spec: (input_times: [], input_data: {}, output_time: false, output_data: { "Result": Pose }, input_order: {}, output_order: { Data("Result"): 0 }),
+    default_data: {},
+    editor_metadata: (node_positions: { "17100000-0000-4000-8000-000000000001": (0.0, 0.0) }, input_position: (0.0, 0.0), output_position: (320.0, 0.0), input_param_order: {}, input_time_order: {}, output_data_order: {}, output_pose_order: {}),
+)

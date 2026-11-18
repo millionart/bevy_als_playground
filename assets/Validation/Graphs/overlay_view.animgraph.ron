@@ -1,0 +1,294 @@
+(
+    nodes: [
+        (
+            id: "a1a1a1a1-b2b2-4c3c-8d4d-000000000001",
+            name: "torch poses clip",
+            inner: {
+                "bevy_animation_graph::builtin_nodes::ClipNode": (
+                    clip: "ALS/Animations/Overlays/Torch/A_Als_Torch_Poses.anim.ron",
+                    override_duration: Some(2.0),
+                    override_interpolation: None,
+                ),
+            },
+            should_debug: false,
+        ),
+        (
+            id: "a1a1a1a1-b2b2-4c3c-8d4d-000000000002",
+            name: "torch poses loop",
+            inner: {
+                "bevy_animation_graph::builtin_nodes::LoopNode": (
+                    interpolation_period: 0.0,
+                ),
+            },
+            should_debug: false,
+        ),
+        (
+            id: "a1a1a1a1-b2b2-4c3c-8d4d-000000000003",
+            name: "reference poses clip",
+            inner: {
+                "bevy_animation_graph::builtin_nodes::ClipNode": (
+                    clip: "ALS/Animations/Overlays/Other/A_Als_Default_Poses.anim.ron",
+                    override_duration: Some(2.0),
+                    override_interpolation: None,
+                ),
+            },
+            should_debug: false,
+        ),
+        (
+            id: "a1a1a1a1-b2b2-4c3c-8d4d-000000000004",
+            name: "reference poses loop",
+            inner: {
+                "bevy_animation_graph::builtin_nodes::LoopNode": (
+                    interpolation_period: 0.0,
+                ),
+            },
+            should_debug: false,
+        ),
+        (
+            id: "a1a1a1a1-b2b2-4c3c-8d4d-000000000005",
+            name: "overlay difference",
+            inner: {
+                "bevy_animation_graph::builtin_nodes::BlendNode": (
+                    mode: Difference,
+                    sync_mode: Absolute,
+                    blend_primary: First,
+                    use_bone_mask: false,
+                ),
+            },
+            should_debug: false,
+        ),
+        (
+            id: "a1a1a1a1-b2b2-4c3c-8d4d-000000000006",
+            name: "masked overlay blend",
+            inner: {
+                "bevy_animation_graph::builtin_nodes::BlendNode": (
+                    mode: Additive,
+                    sync_mode: Absolute,
+                    blend_primary: First,
+                    use_bone_mask: true,
+                ),
+            },
+            should_debug: false,
+        ),
+        (
+            id: "b1b1b1b1-c3c3-4d4d-8e5e-000000000001",
+            name: "look down clip",
+            inner: {
+                "bevy_animation_graph::builtin_nodes::ClipNode": (
+                    clip: "ALS/Animations/View/A_Als_Look_Down.anim.ron",
+                    override_duration: None,
+                    override_interpolation: None,
+                ),
+            },
+            should_debug: false,
+        ),
+        (
+            id: "b1b1b1b1-c3c3-4d4d-8e5e-000000000002",
+            name: "look forward clip",
+            inner: {
+                "bevy_animation_graph::builtin_nodes::ClipNode": (
+                    clip: "ALS/Animations/View/A_Als_Look_Forward.anim.ron",
+                    override_duration: None,
+                    override_interpolation: None,
+                ),
+            },
+            should_debug: false,
+        ),
+        (
+            id: "b1b1b1b1-c3c3-4d4d-8e5e-000000000003",
+            name: "look up clip",
+            inner: {
+                "bevy_animation_graph::builtin_nodes::ClipNode": (
+                    clip: "ALS/Animations/View/A_Als_Look_Up.anim.ron",
+                    override_duration: None,
+                    override_interpolation: None,
+                ),
+            },
+            should_debug: false,
+        ),
+        (
+            id: "b1b1b1b1-c3c3-4d4d-8e5e-000000000004",
+            name: "look pitch blend space",
+            inner: {
+                "bevy_animation_graph::builtin_nodes::BlendSpace1DNode": (
+                    sync_mode: Absolute,
+                    points: [
+                        (
+                            id: "down",
+                            value: -1.0,
+                        ),
+                        (
+                            id: "forward",
+                            value: 0.0,
+                        ),
+                        (
+                            id: "up",
+                            value: 1.0,
+                        ),
+                    ],
+                ),
+            },
+            should_debug: false,
+        ),
+        (
+            id: "b1b1b1b1-c3c3-4d4d-8e5e-000000000005",
+            name: "look loop",
+            inner: {
+                "bevy_animation_graph::builtin_nodes::LoopNode": (
+                    interpolation_period: 0.0,
+                ),
+            },
+            should_debug: false,
+        ),
+        (
+            id: "b1b1b1b1-c3c3-4d4d-8e5e-000000000006",
+            name: "look difference",
+            inner: {
+                "bevy_animation_graph::builtin_nodes::BlendNode": (
+                    mode: Difference,
+                    sync_mode: Absolute,
+                    blend_primary: First,
+                    use_bone_mask: false,
+                ),
+            },
+            should_debug: false,
+        ),
+        (
+            id: "c2c2c2c2-d4d4-4e5e-8f6f-000000000001",
+            name: "reference poses clip 2",
+            inner: {
+                "bevy_animation_graph::builtin_nodes::ClipNode": (
+                    clip: "ALS/Animations/Overlays/Other/A_Als_Default_Poses.anim.ron",
+                    override_duration: Some(2.0),
+                    override_interpolation: None,
+                ),
+            },
+            should_debug: false,
+        ),
+        (
+            id: "c2c2c2c2-d4d4-4e5e-8f6f-000000000002",
+            name: "reference poses loop 2",
+            inner: {
+                "bevy_animation_graph::builtin_nodes::LoopNode": (
+                    interpolation_period: 0.0,
+                ),
+            },
+            should_debug: false,
+        ),
+        (
+            id: "b1b1b1b1-c3c3-4d4d-8e5e-000000000007",
+            name: "masked look blend",
+            inner: {
+                "bevy_animation_graph::builtin_nodes::BlendNode": (
+                    mode: Additive,
+                    sync_mode: Absolute,
+                    blend_primary: First,
+                    use_bone_mask: true,
+                ),
+            },
+            should_debug: false,
+        ),
+    ],
+    edges_inverted: {
+        NodeData("a1a1a1a1-b2b2-4c3c-8d4d-000000000002", "pose"): NodeData("a1a1a1a1-b2b2-4c3c-8d4d-000000000001", "pose"),
+        NodeTime("a1a1a1a1-b2b2-4c3c-8d4d-000000000002", "time"): NodeTime("a1a1a1a1-b2b2-4c3c-8d4d-000000000001"),
+        NodeData("a1a1a1a1-b2b2-4c3c-8d4d-000000000004", "pose"): NodeData("a1a1a1a1-b2b2-4c3c-8d4d-000000000003", "pose"),
+        NodeTime("a1a1a1a1-b2b2-4c3c-8d4d-000000000004", "time"): NodeTime("a1a1a1a1-b2b2-4c3c-8d4d-000000000003"),
+        NodeData("a1a1a1a1-b2b2-4c3c-8d4d-000000000005", "pose_a"): NodeData("a1a1a1a1-b2b2-4c3c-8d4d-000000000002", "pose"),
+        NodeTime("a1a1a1a1-b2b2-4c3c-8d4d-000000000005", "time_a"): NodeTime("a1a1a1a1-b2b2-4c3c-8d4d-000000000002"),
+        NodeData("a1a1a1a1-b2b2-4c3c-8d4d-000000000005", "pose_b"): NodeData("a1a1a1a1-b2b2-4c3c-8d4d-000000000004", "pose"),
+        NodeTime("a1a1a1a1-b2b2-4c3c-8d4d-000000000005", "time_b"): NodeTime("a1a1a1a1-b2b2-4c3c-8d4d-000000000004"),
+        NodeData("a1a1a1a1-b2b2-4c3c-8d4d-000000000005", "factor"): InputData(Passthrough("diff_factor")),
+        NodeData("a1a1a1a1-b2b2-4c3c-8d4d-000000000006", "pose_a"): InputData(Passthrough("prev_pose")),
+        NodeTime("a1a1a1a1-b2b2-4c3c-8d4d-000000000006", "time_a"): InputTime(Passthrough("prev_time")),
+        NodeData("a1a1a1a1-b2b2-4c3c-8d4d-000000000006", "pose_b"): NodeData("a1a1a1a1-b2b2-4c3c-8d4d-000000000005", "pose"),
+        NodeTime("a1a1a1a1-b2b2-4c3c-8d4d-000000000006", "time_b"): NodeTime("a1a1a1a1-b2b2-4c3c-8d4d-000000000005"),
+        NodeData("a1a1a1a1-b2b2-4c3c-8d4d-000000000006", "factor"): InputData(Passthrough("overlay_weight")),
+        NodeData("a1a1a1a1-b2b2-4c3c-8d4d-000000000006", "bone_mask"): InputData(Passthrough("upper_body_mask")),
+        NodeData("b1b1b1b1-c3c3-4d4d-8e5e-000000000004", "parameter"): InputData(Passthrough("view_pitch_norm")),
+        NodeData("b1b1b1b1-c3c3-4d4d-8e5e-000000000004", "pose_down"): NodeData("b1b1b1b1-c3c3-4d4d-8e5e-000000000001", "pose"),
+        NodeTime("b1b1b1b1-c3c3-4d4d-8e5e-000000000004", "time_down"): NodeTime("b1b1b1b1-c3c3-4d4d-8e5e-000000000001"),
+        NodeData("b1b1b1b1-c3c3-4d4d-8e5e-000000000004", "pose_forward"): NodeData("b1b1b1b1-c3c3-4d4d-8e5e-000000000002", "pose"),
+        NodeTime("b1b1b1b1-c3c3-4d4d-8e5e-000000000004", "time_forward"): NodeTime("b1b1b1b1-c3c3-4d4d-8e5e-000000000002"),
+        NodeData("b1b1b1b1-c3c3-4d4d-8e5e-000000000004", "pose_up"): NodeData("b1b1b1b1-c3c3-4d4d-8e5e-000000000003", "pose"),
+        NodeTime("b1b1b1b1-c3c3-4d4d-8e5e-000000000004", "time_up"): NodeTime("b1b1b1b1-c3c3-4d4d-8e5e-000000000003"),
+        NodeData("b1b1b1b1-c3c3-4d4d-8e5e-000000000005", "pose"): NodeData("b1b1b1b1-c3c3-4d4d-8e5e-000000000004", "pose"),
+        NodeTime("b1b1b1b1-c3c3-4d4d-8e5e-000000000005", "time"): NodeTime("b1b1b1b1-c3c3-4d4d-8e5e-000000000004"),
+        NodeData("c2c2c2c2-d4d4-4e5e-8f6f-000000000002", "pose"): NodeData("c2c2c2c2-d4d4-4e5e-8f6f-000000000001", "pose"),
+        NodeTime("c2c2c2c2-d4d4-4e5e-8f6f-000000000002", "time"): NodeTime("c2c2c2c2-d4d4-4e5e-8f6f-000000000001"),
+        NodeData("b1b1b1b1-c3c3-4d4d-8e5e-000000000006", "pose_a"): NodeData("b1b1b1b1-c3c3-4d4d-8e5e-000000000005", "pose"),
+        NodeTime("b1b1b1b1-c3c3-4d4d-8e5e-000000000006", "time_a"): NodeTime("b1b1b1b1-c3c3-4d4d-8e5e-000000000005"),
+        NodeData("b1b1b1b1-c3c3-4d4d-8e5e-000000000006", "pose_b"): NodeData("c2c2c2c2-d4d4-4e5e-8f6f-000000000002", "pose"),
+        NodeTime("b1b1b1b1-c3c3-4d4d-8e5e-000000000006", "time_b"): NodeTime("c2c2c2c2-d4d4-4e5e-8f6f-000000000002"),
+        NodeData("b1b1b1b1-c3c3-4d4d-8e5e-000000000006", "factor"): InputData(Passthrough("diff_factor")),
+        NodeData("b1b1b1b1-c3c3-4d4d-8e5e-000000000007", "pose_a"): NodeData("a1a1a1a1-b2b2-4c3c-8d4d-000000000006", "pose"),
+        NodeTime("b1b1b1b1-c3c3-4d4d-8e5e-000000000007", "time_a"): NodeTime("a1a1a1a1-b2b2-4c3c-8d4d-000000000006"),
+        NodeData("b1b1b1b1-c3c3-4d4d-8e5e-000000000007", "pose_b"): NodeData("b1b1b1b1-c3c3-4d4d-8e5e-000000000006", "pose"),
+        NodeTime("b1b1b1b1-c3c3-4d4d-8e5e-000000000007", "time_b"): NodeTime("b1b1b1b1-c3c3-4d4d-8e5e-000000000006"),
+        NodeData("b1b1b1b1-c3c3-4d4d-8e5e-000000000007", "factor"): InputData(Passthrough("look_weight")),
+        NodeData("b1b1b1b1-c3c3-4d4d-8e5e-000000000007", "bone_mask"): InputData(Passthrough("look_mask")),
+        OutputData("pose"): NodeData("b1b1b1b1-c3c3-4d4d-8e5e-000000000007", "pose"),
+        OutputTime: NodeTime("b1b1b1b1-c3c3-4d4d-8e5e-000000000007"),
+    },
+    io_spec: (
+        input_times: [Passthrough("prev_time")],
+        input_data: {
+            Passthrough("prev_pose"): Pose,
+            Passthrough("diff_factor"): F32,
+            Passthrough("overlay_weight"): F32,
+            Passthrough("upper_body_mask"): BoneMask,
+            Passthrough("view_pitch_norm"): F32,
+            Passthrough("look_weight"): F32,
+            Passthrough("look_mask"): BoneMask,
+        },
+        output_time: true,
+        output_data: {
+            "pose": Pose,
+        },
+        input_order: {
+            Data(Passthrough("prev_pose")): 0,
+            Data(Passthrough("diff_factor")): 1,
+            Data(Passthrough("overlay_weight")): 2,
+            Data(Passthrough("upper_body_mask")): 3,
+            Data(Passthrough("view_pitch_norm")): 4,
+            Data(Passthrough("look_weight")): 5,
+            Data(Passthrough("look_mask")): 6,
+            Time(Passthrough("prev_time")): 7,
+        },
+        output_order: {
+            Data("pose"): 0,
+            Time: 1,
+        },
+    ),
+    default_data: {
+        Passthrough("diff_factor"): F32(1.0),
+        Passthrough("overlay_weight"): F32(0.0),
+        Passthrough("view_pitch_norm"): F32(0.0),
+        Passthrough("look_weight"): F32(0.0),
+    },
+    editor_metadata: (
+        node_positions: {
+            "a1a1a1a1-b2b2-4c3c-8d4d-000000000001": (60.0, 80.0),
+            "a1a1a1a1-b2b2-4c3c-8d4d-000000000002": (300.0, 80.0),
+            "a1a1a1a1-b2b2-4c3c-8d4d-000000000003": (60.0, 280.0),
+            "a1a1a1a1-b2b2-4c3c-8d4d-000000000004": (300.0, 280.0),
+            "a1a1a1a1-b2b2-4c3c-8d4d-000000000005": (520.0, 180.0),
+            "a1a1a1a1-b2b2-4c3c-8d4d-000000000006": (1040.0, 180.0),
+            "b1b1b1b1-c3c3-4d4d-8e5e-000000000001": (60.0, 630.0),
+            "b1b1b1b1-c3c3-4d4d-8e5e-000000000002": (60.0, 780.0),
+            "b1b1b1b1-c3c3-4d4d-8e5e-000000000003": (60.0, 930.0),
+            "b1b1b1b1-c3c3-4d4d-8e5e-000000000004": (340.0, 780.0),
+            "b1b1b1b1-c3c3-4d4d-8e5e-000000000005": (580.0, 780.0),
+            "b1b1b1b1-c3c3-4d4d-8e5e-000000000006": (800.0, 700.0),
+            "b1b1b1b1-c3c3-4d4d-8e5e-000000000007": (1260.0, 400.0),
+            "c2c2c2c2-d4d4-4e5e-8f6f-000000000001": (60.0, 1130.0),
+            "c2c2c2c2-d4d4-4e5e-8f6f-000000000002": (300.0, 1130.0),
+        },
+        input_position: (10.0, 1300.0),
+        output_position: (1480.0, 400.0),
+        input_param_order: {},
+        input_time_order: {},
+        output_data_order: {},
+        output_pose_order: {},
+    ),
+)

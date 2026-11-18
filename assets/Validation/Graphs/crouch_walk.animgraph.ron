@@ -1,0 +1,58 @@
+(
+    nodes: [
+        (
+            id: "88888888-8888-4888-8888-888888888808",
+            name: "crouch walk clip",
+            inner: {
+                "bevy_animation_graph::builtin_nodes::ClipNode": (
+                    clip: "ALS/Animations/Grounded/Crouch/A_Als_Crouch_Walk_Forward.anim.ron",
+                    override_duration: None,
+                    override_interpolation: None,
+                ),
+            },
+            should_debug: false,
+        ),
+        (
+            id: "99999999-9999-4999-8999-999999999909",
+            name: "loop",
+            inner: {
+                "bevy_animation_graph::builtin_nodes::LoopNode": (
+                    interpolation_period: 0.0,
+                ),
+            },
+            should_debug: false,
+        ),
+    ],
+    edges_inverted: {
+        NodeTime("99999999-9999-4999-8999-999999999909", "time"): NodeTime("88888888-8888-4888-8888-888888888808"),
+        OutputData("pose"): NodeData("99999999-9999-4999-8999-999999999909", "pose"),
+        OutputTime: NodeTime("99999999-9999-4999-8999-999999999909"),
+        NodeData("99999999-9999-4999-8999-999999999909", "pose"): NodeData("88888888-8888-4888-8888-888888888808", "pose"),
+    },
+    io_spec: (
+        input_times: [],
+        input_data: {},
+        output_time: true,
+        output_data: {
+            "pose": Pose,
+        },
+        input_order: {},
+        output_order: {
+            Data("pose"): 0,
+            Time: 1,
+        },
+    ),
+    default_data: {},
+    editor_metadata: (
+        node_positions: {
+            "88888888-8888-4888-8888-888888888808": (120.0, 300.0),
+            "99999999-9999-4999-8999-999999999909": (380.0, 300.0),
+        },
+        input_position: (10.0, 300.0),
+        output_position: (600.0, 300.0),
+        input_param_order: {},
+        input_time_order: {},
+        output_data_order: {},
+        output_pose_order: {},
+    ),
+)

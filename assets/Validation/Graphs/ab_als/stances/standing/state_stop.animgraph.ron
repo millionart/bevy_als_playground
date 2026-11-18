@@ -1,0 +1,39 @@
+(
+    nodes: [
+        (id: "15030000-0000-4000-8000-000000000001", name: "Stop States\nState Machine", inner: { "als_ext::InterruptibleFsmNode": (
+            fsm: "Validation/Graphs/ab_als/stances/standing/stop_states.fsm.ron",
+            state_pose_output: "Result",
+            state_pose_outputs: [],
+            outer_pose_output: "Pose",
+            state_label_key: "als_standing_stop_state_index",
+            state_labels: ["Entry", "Lock Left Foot", "Lock Right Foot", "Plant Left Foot", "Plant Right Foot"],
+            internal_time_key: "als_animation_delta_seconds",
+            max_transitions_per_frame: 3,
+            max_transition_requests: 32,
+            expose_telemetry: false,
+        ) }, should_debug: false),
+    ],
+    edges_inverted: {
+        OutputData("Result"): NodeData("15030000-0000-4000-8000-000000000001", "Pose"),
+    },
+    io_spec: (
+        input_times: [],
+        input_data: {},
+        output_time: false,
+        output_data: { "Result": Pose },
+        input_order: {},
+        output_order: { Data("Result"): 0 },
+    ),
+    default_data: {},
+    editor_metadata: (
+        node_positions: {
+            "15030000-0000-4000-8000-000000000001": (-160.0, -16.0),
+        },
+        input_position: (0.0, 0.0),
+        output_position: (0.0, 0.0),
+        input_param_order: {},
+        input_time_order: {},
+        output_data_order: {},
+        output_pose_order: {},
+    ),
+)

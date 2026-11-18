@@ -1,0 +1,39 @@
+(
+    nodes: [
+        (id: "15630000-0000-4000-8000-000000000001", name: "crouching movement states runtime", inner: { "als_ext::InterruptibleFsmNode": (fsm: "Validation/Graphs/ab_als/stances/crouching/movement_states.fsm.ron", state_pose_output: "Result") }, should_debug: false),
+        (id: "15630000-0000-4000-8000-000000000002", name: "crouching movement transition driver", inner: { "als_ext::DirectTransitionEventNode": (key: "als_crouching_movement_transition_index", default_value: -1.0, transitions: [("16200000-0000-4000-8000-000000000103"), ("16200000-0000-4000-8000-000000000106"), ("16200000-0000-4000-8000-000000000101"), ("16200000-0000-4000-8000-000000000102"), ("16200000-0000-4000-8000-000000000104"), ("16200000-0000-4000-8000-000000000105"), ("16200000-0000-4000-8000-000000000109"), ("16200000-0000-4000-8000-000000000118"), ("16200000-0000-4000-8000-000000000123"), ("16200000-0000-4000-8000-000000000114"), ("16200000-0000-4000-8000-000000000116"), ("16200000-0000-4000-8000-000000000107"), ("16200000-0000-4000-8000-000000000111"), ("16200000-0000-4000-8000-000000000120"), ("16200000-0000-4000-8000-000000000121"), ("16200000-0000-4000-8000-000000000117"), ("16200000-0000-4000-8000-000000000112"), ("16200000-0000-4000-8000-000000000108"), ("16200000-0000-4000-8000-000000000110"), ("16200000-0000-4000-8000-000000000119"), ("16200000-0000-4000-8000-000000000122"), ("16200000-0000-4000-8000-000000000113"), ("16200000-0000-4000-8000-000000000115"), ("16200000-0000-4000-8000-000000000124")]) }, should_debug: false),
+    ],
+    edges_inverted: {
+        NodeData("15630000-0000-4000-8000-000000000001", "driver_events"): NodeData("15630000-0000-4000-8000-000000000002", "event"),
+        NodeData("15630000-0000-4000-8000-000000000001", "forward_pose"): InputData(Passthrough("forward_pose")),
+        NodeData("15630000-0000-4000-8000-000000000001", "backward_pose"): InputData(Passthrough("backward_pose")),
+        NodeData("15630000-0000-4000-8000-000000000001", "right_forward_pose"): InputData(Passthrough("right_forward_pose")),
+        NodeData("15630000-0000-4000-8000-000000000001", "right_backward_pose"): InputData(Passthrough("right_backward_pose")),
+        NodeData("15630000-0000-4000-8000-000000000001", "left_forward_pose"): InputData(Passthrough("left_forward_pose")),
+        NodeData("15630000-0000-4000-8000-000000000001", "left_backward_pose"): InputData(Passthrough("left_backward_pose")),
+        NodeTime("15630000-0000-4000-8000-000000000001", "movement_time"): InputTime(Passthrough("movement_time")),
+        OutputData("pose"): NodeData("15630000-0000-4000-8000-000000000001", "pose"),
+        OutputTime: NodeTime("15630000-0000-4000-8000-000000000001"),
+    },
+    io_spec: (
+        input_times: [Passthrough("movement_time")],
+        input_data: { Passthrough("forward_pose"): Pose, Passthrough("backward_pose"): Pose, Passthrough("right_forward_pose"): Pose, Passthrough("right_backward_pose"): Pose, Passthrough("left_forward_pose"): Pose, Passthrough("left_backward_pose"): Pose },
+        output_time: true,
+        output_data: { "pose": Pose },
+        input_order: { Data(Passthrough("forward_pose")): 0, Data(Passthrough("backward_pose")): 1, Data(Passthrough("right_forward_pose")): 2, Data(Passthrough("right_backward_pose")): 3, Data(Passthrough("left_forward_pose")): 4, Data(Passthrough("left_backward_pose")): 5, Time(Passthrough("movement_time")): 6 },
+        output_order: { Data("pose"): 0, Time: 1 },
+    ),
+    default_data: {},
+    editor_metadata: (
+        node_positions: {
+            "15630000-0000-4000-8000-000000000001": (0.0, 0.0),
+            "15630000-0000-4000-8000-000000000002": (-320.0, 0.0),
+        },
+        input_position: (-640.0, 0.0),
+        output_position: (320.0, 0.0),
+        input_param_order: {},
+        input_time_order: {},
+        output_data_order: {},
+        output_pose_order: {},
+    ),
+)

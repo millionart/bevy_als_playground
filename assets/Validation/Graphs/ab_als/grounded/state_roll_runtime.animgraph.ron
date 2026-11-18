@@ -1,0 +1,20 @@
+(
+    nodes: [
+        (id: "17160000-0000-4000-8000-000000000001", name: "roll runtime evaluator", inner: { "als_ext::SourceSequenceEvaluatorNode": (clip: "ALS/Animations/Actions/Roll/A_Als_Roll.anim.ron", explicit_frame: 45.0, explicit_frame_key: "als_grounded_roll_explicit_frame", explicit_frame_pin: "Explicit Frame", frames_per_second: 30.0, should_loop: true, teleport_to_explicit_time: true, reinitialization_behavior: "ExplicitTime") }, should_debug: false),
+        (id: "17160000-0000-4000-8000-000000000002", name: "roll runtime curves", inner: { "als_ext::LayeredGraphNode": (graph: "Validation/Graphs/ab_als/grounded/state_transition_curves.animgraph.ron") }, should_debug: false),
+    ],
+    edges_inverted: {
+        OutputData("pose"): NodeData("17160000-0000-4000-8000-000000000001", "Pose"),
+        OutputData("PoseStanding"): NodeData("17160000-0000-4000-8000-000000000002", "PoseStanding"),
+        OutputData("PoseCrouching"): NodeData("17160000-0000-4000-8000-000000000002", "PoseCrouching"),
+        OutputData("PoseMoving"): NodeData("17160000-0000-4000-8000-000000000002", "PoseMoving"),
+        OutputData("RotationYawOffset"): NodeData("17160000-0000-4000-8000-000000000002", "RotationYawOffset"),
+        OutputData("FootLeftLock"): NodeData("17160000-0000-4000-8000-000000000002", "FootLeftLock"),
+        OutputData("FootRightLock"): NodeData("17160000-0000-4000-8000-000000000002", "FootRightLock"),
+        OutputData("AllowTransitions"): NodeData("17160000-0000-4000-8000-000000000002", "AllowTransitions"),
+        OutputData("RotationYawSpeed"): NodeData("17160000-0000-4000-8000-000000000002", "RotationYawSpeed"),
+    },
+    io_spec: (input_times: [], input_data: {}, output_time: false, output_data: { "pose": Pose, "PoseStanding": F32, "PoseCrouching": F32, "PoseMoving": F32, "RotationYawOffset": F32, "FootLeftLock": F32, "FootRightLock": F32, "AllowTransitions": F32, "RotationYawSpeed": F32 }, input_order: {}, output_order: { Data("pose"): 0, Data("PoseStanding"): 1, Data("PoseCrouching"): 2, Data("PoseMoving"): 3, Data("RotationYawOffset"): 4, Data("FootLeftLock"): 5, Data("FootRightLock"): 6, Data("AllowTransitions"): 7, Data("RotationYawSpeed"): 8 }),
+    default_data: {},
+    editor_metadata: (node_positions: { "17160000-0000-4000-8000-000000000001": (0.0, 0.0), "17160000-0000-4000-8000-000000000002": (256.0, 0.0) }, input_position: (0.0, 0.0), output_position: (512.0, 0.0), input_param_order: {}, input_time_order: {}, output_data_order: {}, output_pose_order: {}),
+)

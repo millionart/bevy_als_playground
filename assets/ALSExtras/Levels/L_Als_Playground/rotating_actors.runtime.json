@@ -1,0 +1,69 @@
+{
+  "format": "als_rotating_actors_v1",
+  "source_world": "/ALS/ALSExtras/Levels/L_Als_Playground.L_Als_Playground",
+  "source_actor": "/ALS/ALSExtras/Environment/B_Als_RotatingObject.B_Als_RotatingObject",
+  "actors": [
+    {
+      "name": "BP_SimpleRotatingObject_2",
+      "actor": {
+        "translation": [
+          13.5,
+          -0.5,
+          -24.0
+        ],
+        "rotation": [
+          -0.0,
+          -0.0,
+          -0.0,
+          1.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "primitive": {
+        "translation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation": [
+          -0.0,
+          -0.0,
+          -0.0,
+          1.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "mesh_scene": "ALSExtras/Environment/Meshes/SM_Als_Block_3x3.glb#Scene0",
+      "mesh_base": "SM_Als_Block_3x3",
+      "collider_center": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "collider_rotation": [
+        -0.0,
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "half_extents": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "rotation_rate_yzx_radians": [
+        -1.7453292519943295,
+        0.0,
+        0.0
+      ]
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+(
+    nodes: [
+        (id: "15610000-0000-4000-8000-000000000001", name: "crouching source pose evaluator", inner: { "als_ext::SourceSequenceEvaluatorNode": (clip: "ALS/Animations/Grounded/Crouch/A_Als_Crouch_Walk_Pose.anim.ron", explicit_frame: 0.0, explicit_frame_key: "", explicit_frame_pin: "Explicit Frame", frames_per_second: 30.0, should_loop: true, teleport_to_explicit_time: true, reinitialization_behavior: "ExplicitTime") }, should_debug: false),
+    ],
+    edges_inverted: {
+        NodeData("15610000-0000-4000-8000-000000000001", "Explicit Frame"): InputData(Passthrough("Explicit Frame")),
+        OutputData("pose"): NodeData("15610000-0000-4000-8000-000000000001", "Pose"),
+    },
+    io_spec: (
+        input_times: [],
+        input_data: { Passthrough("Explicit Frame"): F32 },
+        output_time: false,
+        output_data: { "pose": Pose },
+        input_order: { Data(Passthrough("Explicit Frame")): 0 },
+        output_order: { Data("pose"): 0 },
+    ),
+    default_data: { Passthrough("Explicit Frame"): F32(0.0) },
+    editor_metadata: (
+        node_positions: {
+            "15610000-0000-4000-8000-000000000001": (0.0, 0.0),
+        },
+        input_position: (-512.0, 0.0),
+        output_position: (256.0, 0.0),
+        input_param_order: {},
+        input_time_order: {},
+        output_data_order: {},
+        output_pose_order: {},
+    ),
+)

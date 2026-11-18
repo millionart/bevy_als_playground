@@ -1,0 +1,50 @@
+[package]
+name = "bevy_als_playground"
+description = "Runnable integration example and regression scenes for bevy_als"
+edition = "2024"
+version = "0.1.0"
+license = "MIT"
+publish = false
+resolver = "2"
+default-run = "bevy_als_playground"
+autoexamples = false
+autotests = false
+
+[profile.dev.package."*"]
+opt-level = 3
+
+[profile.play]
+inherits = "dev"
+opt-level = 3
+debug = 0
+strip = "debuginfo"
+incremental = false
+
+[dependencies]
+avian3d = { version = "0.8", default-features = false, features = ["3d", "debug-plugin", "parallel"] }
+bevy = { version = "0.20.1", features = ["file_watcher", "tga", "pbr_clustered_decals"] }
+bevy_als = { git = "https://github.com/millionart/bevy_als.git", rev = "a6873ec4d694153663c8270eeda4a68434f2108b" }
+bevy_animation_graph = { git = "https://github.com/millionart/bevy_animation_graph", rev = "6d706f61c35a6cf7b1c96430a56ae46241b4d51f", features = ["physics_avian"] }
+bevy_enhanced_input = "0.27"
+bevy_gameplay_tag = { git = "https://github.com/millionart/bevy_gameplay_tag", rev = "30a41183ac0705e6b7b483d0a72f0ca70510327e" }
+bevy-tnua = "0.33.2"
+ron = "0.10"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1"
+
+[dev-dependencies]
+bevy-tnua-avian3d = "0.13.2"
+bevy_gltf = "0.20.1"
+serde_json = { version = "1", features = ["float_roundtrip"] }
+
+[[bin]]
+name = "bevy_als_playground"
+path = "src/als_extras/levels/manual_playground.rs"
+
+[[example]]
+name = "als_character"
+path = "src/als_extras/levels/als_character.rs"
+
+[[test]]
+name = "prev_mock_probe"
+path = "src/tests/prev_mock_probe.rs"

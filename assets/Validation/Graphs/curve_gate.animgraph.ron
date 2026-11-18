@@ -1,0 +1,55 @@
+(
+    nodes: [
+        (
+            id: "768a4b08-e7ea-4054-84bf-b4badc6364aa",
+            name: "curve driven value",
+            inner: {
+                "als_ext::CurveDrivenValueNode": (
+                    mode: Smooth,
+                    keys: [
+                        (t: 0.0, v: 0.0),
+                        (t: 1.0, v: 0.25),
+                        (t: 2.0, v: 1.0),
+                    ],
+                    scale: 1.0,
+                    bias: 0.0,
+                ),
+            },
+            should_debug: false,
+        ),
+    ],
+    edges_inverted: {
+        NodeData("768a4b08-e7ea-4054-84bf-b4badc6364aa", "x"): InputData(Passthrough("drive_time")),
+        OutputData("curve_value"): NodeData("768a4b08-e7ea-4054-84bf-b4badc6364aa", "value"),
+    },
+    io_spec: (
+        input_times: [],
+        input_data: {
+            Passthrough("drive_time"): F32,
+        },
+        output_time: false,
+        output_data: {
+            "curve_value": F32,
+        },
+        input_order: {
+            Data(Passthrough("drive_time")): 0,
+        },
+        output_order: {
+            Data("curve_value"): 0,
+        },
+    ),
+    default_data: {
+        Passthrough("drive_time"): F32(0.0),
+    },
+    editor_metadata: (
+        node_positions: {
+            "768a4b08-e7ea-4054-84bf-b4badc6364aa": (300.0, 300.0),
+        },
+        input_position: (20.0, 300.0),
+        output_position: (600.0, 300.0),
+        input_param_order: {},
+        input_time_order: {},
+        output_data_order: {},
+        output_pose_order: {},
+    ),
+)

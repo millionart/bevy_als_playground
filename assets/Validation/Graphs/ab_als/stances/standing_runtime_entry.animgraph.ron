@@ -1,0 +1,26 @@
+(
+    nodes: [
+        (id: "15510000-0000-4000-8000-000000000001", name: "standing source graph runtime entry", inner: { "als_ext::LayeredGraphNode": (graph: "Validation/Graphs/ab_als/stances/standing.animgraph.ron", capture_context: true, global_curve_prefixes: ["als_standing_curve_"], expose_context_curves: false, internalize_time: true, output_aliases: [(child_output: "Result", outer_output: "pose")]) }, should_debug: false),
+    ],
+    edges_inverted: {
+        OutputData("pose"): NodeData("15510000-0000-4000-8000-000000000001", "pose"),
+    },
+    io_spec: (
+        input_times: [],
+        input_data: {},
+        output_time: false,
+        output_data: { "pose": Pose },
+        input_order: {},
+        output_order: { Data("pose"): 0 },
+    ),
+    default_data: {},
+    editor_metadata: (
+        node_positions: { "15510000-0000-4000-8000-000000000001": (0.0, 0.0) },
+        input_position: (-224.0, 0.0),
+        output_position: (224.0, 0.0),
+        input_param_order: {},
+        input_time_order: {},
+        output_data_order: {},
+        output_pose_order: {},
+    ),
+)

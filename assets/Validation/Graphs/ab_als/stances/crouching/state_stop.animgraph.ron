@@ -1,0 +1,122 @@
+(
+    nodes: [
+        (
+            id: "164c0000-0000-4000-8000-000000000001",
+            name: "Layered blend per bone",
+            inner: {
+                "als_ext::SourceLayeredBoneBlendNode": (
+                    branch_bones: [],
+                    branch_bone_layers: [
+                        ["thigh_l", "ik_foot_l", "VB foot_l"],
+                        ["thigh_r", "ik_foot_r", "VB foot_r"],
+                    ],
+                    blend_weight: 1.0,
+                    blend_weights: [1.0, 1.0],
+                    mesh_space_rotation_blend: true,
+                    blend_root_motion_based_on_root_bone: true,
+                    base_pose_pin: "Base Pose",
+                    blend_pose_pin: "Blend Poses 0",
+                    blend_pose_pins: ["Blend Poses 0", "Blend Poses 1"],
+                    output_pin: "Pose",
+                ),
+            },
+            should_debug: false,
+        ),
+        (
+            id: "164c0000-0000-4000-8000-000000000002",
+            name: "A_Als_Crouch_Walk_Pose\nSequence Evaluator (by frame)",
+            inner: {
+                "als_ext::SourceSequenceEvaluatorNode": (
+                    clip: "ALS/Animations/Grounded/Crouch/A_Als_Crouch_Walk_Pose.anim.ron",
+                    explicit_frame: 0.0,
+                    explicit_frame_key: "",
+                    explicit_frame_pin: "Explicit Frame",
+                    frames_per_second: 30.0,
+                    should_loop: true,
+                    teleport_to_explicit_time: true,
+                    reinitialization_behavior: "ExplicitTime",
+                ),
+            },
+            should_debug: false,
+        ),
+        (
+            id: "164c0000-0000-4000-8000-000000000003",
+            name: "A_Als_Crouch_Walk_Pose\nSequence Evaluator (by frame)",
+            inner: {
+                "als_ext::SourceSequenceEvaluatorNode": (
+                    clip: "ALS/Animations/Grounded/Crouch/A_Als_Crouch_Walk_Pose.anim.ron",
+                    explicit_frame: 0.0,
+                    explicit_frame_key: "",
+                    explicit_frame_pin: "Explicit Frame",
+                    frames_per_second: 30.0,
+                    should_loop: true,
+                    teleport_to_explicit_time: true,
+                    reinitialization_behavior: "ExplicitTime",
+                ),
+            },
+            should_debug: false,
+        ),
+        (
+            id: "164c0000-0000-4000-8000-000000000004",
+            name: "Modify Curve",
+            inner: {
+                "als_ext::SourceCurveModifyNode": (
+                    curve_name: "",
+                    curve_names: ["FootLeftLock", "FootRightLock"],
+                    value: 0.0,
+                    pin_default: 1.0,
+                    pin_defaults: [1.0, 1.0],
+                    value_key: "",
+                    value_keys: ["", ""],
+                    source_value_path: "",
+                    source_value_paths: ["", ""],
+                    alpha: 1.0,
+                    apply_mode: "Blend",
+                ),
+            },
+            should_debug: false,
+        ),
+        (
+            id: "164c0000-0000-4000-8000-000000000005",
+            name: "Use cached pose 'Movement'",
+            inner: {
+                "als_ext::SourceScopedCachedPoseUseNode": (
+                    cache_node: "Save cached pose 'Movement'",
+                    cache_key: "ab_als_crouching:movement",
+                ),
+            },
+            should_debug: false,
+        ),
+    ],
+    edges_inverted: {
+        NodeData("164c0000-0000-4000-8000-000000000001", "Base Pose"): NodeData("164c0000-0000-4000-8000-000000000005", "Pose"),
+        NodeData("164c0000-0000-4000-8000-000000000001", "Blend Poses 0"): NodeData("164c0000-0000-4000-8000-000000000002", "Pose"),
+        NodeData("164c0000-0000-4000-8000-000000000001", "Blend Poses 1"): NodeData("164c0000-0000-4000-8000-000000000003", "Pose"),
+        NodeData("164c0000-0000-4000-8000-000000000004", "Source Pose"): NodeData("164c0000-0000-4000-8000-000000000001", "Pose"),
+        OutputData("Result"): NodeData("164c0000-0000-4000-8000-000000000004", "Pose"),
+    },
+    io_spec: (
+        input_times: [],
+        input_data: {},
+        output_time: false,
+        output_data: { "Result": Pose },
+        input_order: {},
+        output_order: { Data("Result"): 0 },
+    ),
+    default_data: {},
+    editor_metadata: (
+        node_positions: {
+            "164c0000-0000-4000-8000-000000000001": (-512.0, 0.0),
+            "164c0000-0000-4000-8000-000000000002": (-800.0, 0.0),
+            "164c0000-0000-4000-8000-000000000003": (-800.0, 128.0),
+            "164c0000-0000-4000-8000-000000000004": (-272.0, 0.0),
+            "164c0000-0000-4000-8000-000000000005": (-784.0, -96.0),
+        },
+        input_position: (0.0, 0.0),
+        output_position: (0.0, 0.0),
+        input_param_order: {},
+        input_time_order: {},
+        output_data_order: {},
+        output_pose_order: {},
+    ),
+)

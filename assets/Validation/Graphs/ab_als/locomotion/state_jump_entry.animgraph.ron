@@ -1,0 +1,15 @@
+(
+    nodes: [
+        (id: "18100000-0000-4000-8000-000000000001", name: "jump entry loop clip", inner: { "bevy_animation_graph::builtin_nodes::ClipNode": (clip: "ALS/Animations/Air/Jump/A_Als_Jump_Loop.anim.ron", override_duration: None, override_interpolation: None) }, should_debug: false),
+        (id: "18100000-0000-4000-8000-000000000002", name: "jump entry loop", inner: { "bevy_animation_graph::builtin_nodes::LoopNode": (interpolation_period: 0.0) }, should_debug: false),
+    ],
+    edges_inverted: {
+        NodeData("18100000-0000-4000-8000-000000000002", "pose"): NodeData("18100000-0000-4000-8000-000000000001", "pose"), NodeTime("18100000-0000-4000-8000-000000000002", "time"): NodeTime("18100000-0000-4000-8000-000000000001"),
+        OutputData("pose"): NodeData("18100000-0000-4000-8000-000000000002", "pose"), OutputTime: NodeTime("18100000-0000-4000-8000-000000000002"),
+    },
+    io_spec: (input_times: [], input_data: {}, output_time: true, output_data: { "pose": Pose }, input_order: {}, output_order: { Data("pose"): 0, Time: 1 }), default_data: {},
+    editor_metadata: (node_positions: {
+        "18100000-0000-4000-8000-000000000001": (0.000, 0.000),
+        "18100000-0000-4000-8000-000000000002": (256.000, 0.000),
+    }, input_position: (0.0, 0.0), output_position: (320.0, 0.0), input_param_order: {}, input_time_order: {}, output_data_order: {}, output_pose_order: {}),
+)

@@ -1,0 +1,38 @@
+(
+    nodes: [
+        (
+            id: "15657000-0000-4000-8000-000000000001",
+            name: "Use cached pose 'Movement'",
+            inner: {
+                "als_ext::SourceScopedCachedPoseUseNode": (
+                    cache_node: "Save cached pose 'Movement'",
+                    cache_key: "ab_als_crouching:movement",
+                ),
+            },
+            should_debug: false,
+        ),
+    ],
+    edges_inverted: {
+        OutputData("Result"): NodeData("15657000-0000-4000-8000-000000000001", "Pose"),
+    },
+    io_spec: (
+        input_times: [],
+        input_data: {},
+        output_time: false,
+        output_data: { "Result": Pose },
+        input_order: {},
+        output_order: { Data("Result"): 0 },
+    ),
+    default_data: {},
+    editor_metadata: (
+        node_positions: {
+            "15657000-0000-4000-8000-000000000001": (-272.0, 0.0),
+        },
+        input_position: (0.0, 0.0),
+        output_position: (0.0, 0.0),
+        input_param_order: {},
+        input_time_order: {},
+        output_data_order: {},
+        output_pose_order: {},
+    ),
+)

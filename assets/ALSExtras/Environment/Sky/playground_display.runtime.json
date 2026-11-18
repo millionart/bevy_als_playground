@@ -1,0 +1,73 @@
+{
+  "format": "playground_display_v1",
+  "lut_dimension": 48,
+  "lut_domain": "linear_over_linear_plus_one",
+  "lut_sha256": "f0a720f2fb901df7b6849628adc1deaffd217c94653fec03906cfe15ba849b6e",
+  "filmic": {
+    "FilmSlope": 0.88,
+    "FilmToe": 0.55,
+    "FilmShoulder": 0.26,
+    "FilmBlackClip": 0.0,
+    "FilmWhiteClip": 0.04,
+    "BlueCorrection": 0.6,
+    "ExpandGamut": 1.0,
+    "ToneCurveAmount": 1.0
+  },
+  "bloom": {
+    "threshold": -1.0,
+    "size_scale": 4.0,
+    "intensity": 0.675,
+    "sizes": [
+      0.3,
+      1.0,
+      2.0,
+      10.0,
+      30.0,
+      64.0
+    ],
+    "tints": [
+      [
+        0.3465,
+        0.3465,
+        0.3465
+      ],
+      [
+        0.138,
+        0.138,
+        0.138
+      ],
+      [
+        0.1176,
+        0.1176,
+        0.1176
+      ],
+      [
+        0.066,
+        0.066,
+        0.066
+      ],
+      [
+        0.066,
+        0.066,
+        0.066
+      ],
+      [
+        0.061,
+        0.061,
+        0.061
+      ]
+    ],
+    "filter_size_scale": 1.0,
+    "fast_blur_threshold": 7.0,
+    "kernel_exponent": -16.7,
+    "sample_count_max": 32,
+    "downsample_quality": "high"
+  },
+  "source_contract": {
+    "Shaders/Private/ACES/ACESCommon.ush": "f82f5e068499094deec6fe0f3595591b0a08bb1371020a027a1add191a236c54",
+    "Shaders/Private/TonemapCommon.ush": "90268a65562770d569a846486baa16d052c287075634d2945abc967c701be090",
+    "Shaders/Private/PostProcessCombineLUTs.usf": "d3913305b5c5a84543ee675a7fdfeb73868d62083a662131d0d56cdc06e473ab",
+    "Source/Runtime/Engine/Private/Scene.cpp": "c5389967bd6be3a9eb557e4c259c9c1136e77e49dd5b877dbd57ed01d92f76e1",
+    "Source/Runtime/Core/Public/ColorManagement/ColorManagementDefines.h": "7dd4000fbe1b27a880db8e75103a7b4b18f6cc88827b5799aeb1c7ccc39bdb77"
+  }
+}

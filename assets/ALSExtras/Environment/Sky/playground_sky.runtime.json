@@ -1,0 +1,730 @@
+{
+  "colors_by_sun": true,
+  "sun_height": 0.5,
+  "actor_yaw": 0.0,
+  "sun": {
+    "pitch": -45.0,
+    "yaw": 45.0,
+    "color": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  "transform": {
+    "translation": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "rotation": [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "scale": [
+      400.0,
+      400.0,
+      400.0
+    ]
+  },
+  "mesh_source": "/Engine/EngineSky/SM_SkySphere.SM_SkySphere",
+  "zenith": [
+    0.034046,
+    0.109247,
+    0.295,
+    1.0
+  ],
+  "horizon": [
+    1.979559,
+    2.586644,
+    3.0,
+    1.0
+  ],
+  "cloud": [
+    0.855778,
+    0.91902,
+    1.0,
+    1.0
+  ],
+  "overall": [
+    1.0,
+    1.0,
+    1.0,
+    1.0
+  ],
+  "sun_brightness": 75.0,
+  "horizon_falloff": 3.0,
+  "cloud_speed": 2.0,
+  "cloud_opacity": 1.0,
+  "stars_brightness": 0.1,
+  "material_constants": {
+    "noise_power_1": 1.0,
+    "noise_power_2": 4.0,
+    "sun_radius": 0.0003,
+    "blue_speed": 0.0002,
+    "cloud_speed": 0.001,
+    "noise_tiling": 0.5,
+    "stars_tiling": 12.0,
+    "emissive_scale": 1.5,
+    "rim_scale": 0.4,
+    "height_radius_scale": -0.1,
+    "glow_radius": 1.3,
+    "glow_exponent": 10.0
+  },
+  "curves": {
+    "zenith": [
+      [
+        {
+          "interpolation": "Cubic",
+          "tangent_mode": "Auto",
+          "tangent_weight_mode": "None",
+          "t": -0.950263,
+          "v": 0.0,
+          "arrive_tangent": 0.0,
+          "arrive_weight": 0.0,
+          "leave_tangent": 0.0,
+          "leave_weight": 0.0
+        },
+        {
+          "interpolation": "Cubic",
+          "tangent_mode": "User",
+          "tangent_weight_mode": "None",
+          "t": -0.403666,
+          "v": 0.078187,
+          "arrive_tangent": 0.291961,
+          "arrive_weight": 0.0,
+          "leave_tangent": 0.291961,
+          "leave_weight": 0.0
+        },
+        {
+          "interpolation": "Cubic",
+          "tangent_mode": "Auto",
+          "tangent_weight_mode": "None",
+          "t": 0.000393,
+          "v": 0.225,
+          "arrive_tangent": 0.436093,
+          "arrive_weight": 0.0,
+          "leave_tangent": 0.436093,
+          "leave_weight": 0.0
+        },
+        {
+          "interpolation": "Cubic",
+          "tangent_mode": "Auto",
+          "tangent_weight_mode": "None",
+          "t": 0.08204,
+          "v": 0.29,
+          "arrive_tangent": -0.700058,
+          "arrive_weight": 0.0,
+          "leave_tangent": -0.700058,
+          "leave_weight": 0.0
+        },
+        {
+          "interpolation": "Cubic",
+          "tangent_mode": "User",
+          "tangent_weight_mode": "None",
+          "t": 0.182798,
+          "v": 0.097306,
+          "arrive_tangent": -0.889177,
+          "arrive_weight": 0.0,
+          "leave_tangent": -0.889177,
+          "leave_weight": 0.0
+        },
+        {
+          "interpolation": "Cubic",
+          "tangent_mode": "Auto",
+          "tangent_weight_mode": "None",
+          "t": 0.303617,
+          "v": 0.044,
+          "arrive_tangent": -0.259358,
+          "arrive_weight": 0.0,
+          "leave_tangent": -0.259358,
+          "leave_weight": 0.0
+        },
+        {
+          "interpolation": "Cubic",
+          "tangent_mode": "Auto",
+          "tangent_weight_mode": "None",
+          "t": 0.470069,
+          "v": 0.0228,
+          "arrive_tangent": 0.0,
+          "arrive_weight": 0.0,
+          "leave_tangent": 0.0,
+          "leave_weight": 0.0
+        }
+      ],
+      [
+        {
+          "interpolation": "Cubic",
+          "tangent_mode": "Auto",
+          "tangent_weight_mode": "None",
+          "t": -0.950263,
+          "v": 0.0,
+          "arrive_tangent": 0.0,
+          "arrive_weight": 0.0,
+          "leave_tangent": 0.0,
+          "leave_weight": 0.0
+        },
+        {
+          "interpolation": "Cubic",
+          "tangent_mode": "User",
+          "tangent_weight_mode": "None",
+          "t": -0.403666,
+          "v": 0.0644,
+          "arrive_tangent": 0.177413,
+          "arrive_weight": 0.0,
+          "leave_tangent": 0.177413,
+          "leave_weight": 0.0
+        },
+        {
+          "interpolation": "Cubic",
+          "tangent_mode": "Auto",
+          "tangent_weight_mode": "None",
+          "t": 0.000393,
+          "v": 0.098796,
+          "arrive_tangent": 0.156074,
+          "arrive_weight": 0.0,
+          "leave_tangent": 0.156074,
+          "leave_weight": 0.0
+        },
+        {
+          "interpolation": "Cubic",
+          "tangent_mode": "Auto",
+          "tangent_weight_mode": "None",
+          "t": 0.08204,
+          "v": 0.140206,
+          "arrive_tangent": 0.217388,
+          "arrive_weight": 0.0,
+          "leave_tangent": 0.217388,
+          "leave_weight": 0.0
+        },
+        {
+          "interpolation": "Cubic",
+          "tangent_mode": "User",
+          "tangent_weight_mode": "None",
+          "t": 0.182798,
+          "v": 0.138449,
+          "arrive_tangent": -0.708979,
+          "arrive_weight": 0.0,
+          "leave_tangent": -0.708979,
+          "leave_weight": 0.0
+        },
+        {
+          "interpolation": "Cubic",
+          "tangent_mode": "Auto",
+          "tangent_weight_mode": "None",
+          "t": 0.303617,
+          "v": 0.087,
+          "arrive_tangent": -0.311395,
+          "arrive_weight": 0.0,
+          "leave_tangent": -0.311395,
+          "leave_weight": 0.0
+        },
+        {
+          "interpolation": "Linear",
+          "tangent_mode": "Auto",
+          "tangent_weight_mode": "None",
+          "t": 0.470069,
+          "v": 0.048994,
+          "arrive_tangent": 0.0,
+          "arrive_weight": 0.0,
+          "leave_tangent": 0.0,
+          "leave_weight": 0.0
+        }
+      ],
+      [
+        {
+          "interpolation": "Cubic",
+          "tangent_mode": "Auto",
+          "tangent_weight_mode": "None",
+          "t": -0.950263,
+          "v": 0.0,
+          "arrive_tangent": 0.0,
+          "arrive_weight": 0.0,
+          "leave_tangent": 0.0,
+          "leave_weight": 0.0
+        },
+        {
+          "interpolation": "Cubic",
+          "tangent_mode": "Auto",
+          "tangent_weight_mode": "None",
+          "t": -0.403666,
+          "v": 0.08,
+          "arrive_tangent": 0.098529,
+          "arrive_weight": 0.0,
+          "leave_tangent": 0.098529,
+          "leave_weight": 0.0
+        },
+        {
+          "interpolation": "Cubic",
+          "tangent_mode": "Auto",
+          "tangent_weight_mode": "None",
+          "t": 0.000393,
+          "v": 0.093667,
+          "arrive_tangent": 0.080089,
+          "arrive_weight": 0.0,
+          "leave_tangent": 0.080089,
+          "leave_weight": 0.0
+        },
+        {
+          "interpolation": "Cubic",
+          "tangent_mode": "User",
+          "tangent_weight_mode": "None",
+          "t": 0.08204,
+          "v": 0.1189,
+          "arrive_tangent": 0.377577,
+          "arrive_weight": 0.0,
+          "leave_tangent": 0.377577,
+          "leave_weight": 0.0
+        },
+        {
+          "interpolation": "Cubic",
+          "tangent_mode": "Auto",
+          "tangent_weight_mode": "None",
+          "t": 0.182798,
+          "v": 0.178948,
+          "arrive_tangent": 0.388579,
+          "arrive_weight": 0.0,
+          "leave_tangent": 0.388579,
+          "leave_weight": 0.0
+        },
+        {
+          "interpolation": "Cubic",
+          "tangent_mode": "Auto",
+          "tangent_weight_mode": "None",
+          "t": 0.303617,
+          "v": 0.205,
+          "arrive_tangent": -0.2052,
+          "arrive_weight": 0.0,
+          "leave_tangent": -0.2052,
+          "leave_weight": 0.0
+        },
+        {
+          "interpolation": "Linear",
+          "tangent_mode": "Auto",
+          "tangent_weight_mode": "None",
+          "t": 0.470069,
+          "v": 0.12,
+          "arrive_tangent": 0.0,
+          "arrive_weight": 0.0,
+          "leave_tangent": 0.0,
+          "leave_weight": 0.0
+        }
+      ]
+    ],
+    "horizon": [
+      [
+        {
+          "interpolation": "Cubic",
+          "tangent_mode": "Auto",
+          "tangent_weight_mode": "None",
+          "t": -0.994358,
+          "v": 0.048,
+          "arrive_tangent": 0.0,
+          "arrive_weight": 0.0,
+          "leave_tangent": 0.0,
+          "leave_weight": 0.0
+        },
+        {
+          "interpolation": "Cubic",
+          "tangent_mode": "Auto",
+          "tangent_weight_mode": "None",
+          "t": -0.55225,
+          "v": 0.475,
+          "arrive_tangent": 1.964782,
+          "arrive_weight": 0.0,
+          "leave_tangent": 1.964782,
+          "leave_weight": 0.0
+        },
+        {
+          "interpolation": "Cubic",
+          "tangent_mode": "User",
+          "tangent_weight_mode": "None",
+          "t": -0.000863,
+          "v": 2.0,
+          "arrive_tangent": 0.200593,
+          "arrive_weight": 0.0,
+          "leave_tangent": 0.200593,
+          "leave_weight": 0.0
+        },
+        {
+          "interpolation": "Cubic",
+          "tangent_mode": "User",
+          "tangent_weight_mode": "None",
+          "t": 0.172755,
+          "v": 2.0,
+          "arrive_tangent": -0.329943,
+          "arrive_weight": 0.0,
+          "leave_tangent": -0.329943,
+          "leave_weight": 0.0
+        },
+        {
+          "interpolation": "Cubic",
+          "tangent_mode": "Auto",
+          "tangent_weight_mode": "None",
+          "t": 0.379341,
+          "v": 0.6975,
+          "arrive_tangent": -3.894051,
+          "arrive_weight": 0.0,
+          "leave_tangent": -3.894051,
+          "leave_weight": 0.0
+        },
+        {
+          "interpolation": "Linear",
+          "tangent_mode": "Auto",
+          "tangent_weight_mode": "None",
+          "t": 0.450101,
+          "v": 0.92,
+          "arrive_tangent": 0.0,
+          "arrive_weight": 0.0,
+          "leave_tangent": 0.0,
+          "leave_weight": 0.0
+        }
+      ],
+      [
+        {
+          "interpolation": "Cubic",
+          "tangent_mode": "Auto",
+          "tangent_weight_mode": "None",
+          "t": -0.994358,
+          "v": 0.052,
+          "arrive_tangent": 0.0,
+          "arrive_weight": 0.0,
+          "leave_tangent": 0.0,
+          "leave_weight": 0.0
+        },
+        {
+          "interpolation": "Cubic",
+          "tangent_mode": "User",
+          "tangent_weight_mode": "None",
+          "t": -0.55225,
+          "v": 0.135915,
+          "arrive_tangent": 0.050922,
+          "arrive_weight": 0.0,
+          "leave_tangent": 0.050922,
+          "leave_weight": 0.0
+        },
+        {
+          "interpolation": "Cubic",
+          "tangent_mode": "User",
+          "tangent_weight_mode": "None",
+          "t": -0.000863,
+          "v": 0.6,
+          "arrive_tangent": 0.053031,
+          "arrive_weight": 0.0,
+          "leave_tangent": 0.053031,
+          "leave_weight": 0.0
+        },
+        {
+          "interpolation": "Cubic",
+          "tangent_mode": "User",
+          "tangent_weight_mode": "None",
+          "t": 0.172755,
+          "v": 0.604272,
+          "arrive_tangent": 0.038055,
+          "arrive_weight": 0.0,
+          "leave_tangent": 0.038055,
+          "leave_weight": 0.0
+        },
+        {
+          "interpolation": "Cubic",
+          "tangent_mode": "Auto",
+          "tangent_weight_mode": "None",
+          "t": 0.379341,
+          "v": 0.943151,
+          "arrive_tangent": 2.589076,
+          "arrive_weight": 0.0,
+          "leave_tangent": 2.589076,
+          "leave_weight": 0.0
+        },
+        {
+          "interpolation": "Linear",
+          "tangent_mode": "Auto",
+          "tangent_weight_mode": "None",
+          "t": 0.450101,
+          "v": 1.322342,
+          "arrive_tangent": 0.0,
+          "arrive_weight": 0.0,
+          "leave_tangent": 0.0,
+          "leave_weight": 0.0
+        }
+      ],
+      [
+        {
+          "interpolation": "Cubic",
+          "tangent_mode": "Auto",
+          "tangent_weight_mode": "None",
+          "t": -0.994358,
+          "v": 0.075,
+          "arrive_tangent": 0.0,
+          "arrive_weight": 0.0,
+          "leave_tangent": 0.0,
+          "leave_weight": 0.0
+        },
+        {
+          "interpolation": "Cubic",
+          "tangent_mode": "User",
+          "tangent_weight_mode": "None",
+          "t": -0.55225,
+          "v": 0.11322,
+          "arrive_tangent": 0.023653,
+          "arrive_weight": 0.0,
+          "leave_tangent": 0.023653,
+          "leave_weight": 0.0
+        },
+        {
+          "interpolation": "Cubic",
+          "tangent_mode": "Auto",
+          "tangent_weight_mode": "None",
+          "t": -0.000863,
+          "v": 0.2,
+          "arrive_tangent": 0.172832,
+          "arrive_weight": 0.0,
+          "leave_tangent": 0.172832,
+          "leave_weight": 0.0
+        },
+        {
+          "interpolation": "Cubic",
+          "tangent_mode": "User",
+          "tangent_weight_mode": "None",
+          "t": 0.172755,
+          "v": 0.238523,
+          "arrive_tangent": 0.220265,
+          "arrive_weight": 0.0,
+          "leave_tangent": 0.220265,
+          "leave_weight": 0.0
+        },
+        {
+          "interpolation": "Cubic",
+          "tangent_mode": "Auto",
+          "tangent_weight_mode": "None",
+          "t": 0.379341,
+          "v": 1.5,
+          "arrive_tangent": 6.351185,
+          "arrive_weight": 0.0,
+          "leave_tangent": 6.351185,
+          "leave_weight": 0.0
+        },
+        {
+          "interpolation": "Linear",
+          "tangent_mode": "Auto",
+          "tangent_weight_mode": "None",
+          "t": 0.450101,
+          "v": 2.0,
+          "arrive_tangent": 0.0,
+          "arrive_weight": 0.0,
+          "leave_tangent": 0.0,
+          "leave_weight": 0.0
+        }
+      ]
+    ],
+    "cloud": [
+      [
+        {
+          "interpolation": "Cubic",
+          "tangent_mode": "Auto",
+          "tangent_weight_mode": "None",
+          "t": -0.788811,
+          "v": 0.05395,
+          "arrive_tangent": 0.0,
+          "arrive_weight": 0.0,
+          "leave_tangent": 0.0,
+          "leave_weight": 0.0
+        },
+        {
+          "interpolation": "Cubic",
+          "tangent_mode": "Auto",
+          "tangent_weight_mode": "None",
+          "t": -0.483613,
+          "v": 0.215,
+          "arrive_tangent": 1.070496,
+          "arrive_weight": 0.0,
+          "leave_tangent": 1.070496,
+          "leave_weight": 0.0
+        },
+        {
+          "interpolation": "Cubic",
+          "tangent_mode": "Auto",
+          "tangent_weight_mode": "None",
+          "t": -0.203988,
+          "v": 0.68,
+          "arrive_tangent": 0.898007,
+          "arrive_weight": 0.0,
+          "leave_tangent": 0.898007,
+          "leave_weight": 0.0
+        },
+        {
+          "interpolation": "Cubic",
+          "tangent_mode": "Auto",
+          "tangent_weight_mode": "None",
+          "t": 0.16783,
+          "v": 0.8,
+          "arrive_tangent": 0.298891,
+          "arrive_weight": 0.0,
+          "leave_tangent": 0.298891,
+          "leave_weight": 0.0
+        },
+        {
+          "interpolation": "Cubic",
+          "tangent_mode": "Auto",
+          "tangent_weight_mode": "None",
+          "t": 0.364782,
+          "v": 0.85,
+          "arrive_tangent": 0.200345,
+          "arrive_weight": 0.0,
+          "leave_tangent": 0.200345,
+          "leave_weight": 0.0
+        },
+        {
+          "interpolation": "Linear",
+          "tangent_mode": "Auto",
+          "tangent_weight_mode": "None",
+          "t": 0.813163,
+          "v": 0.929289,
+          "arrive_tangent": 0.0,
+          "arrive_weight": 0.0,
+          "leave_tangent": 0.0,
+          "leave_weight": 0.0
+        }
+      ],
+      [
+        {
+          "interpolation": "Cubic",
+          "tangent_mode": "Auto",
+          "tangent_weight_mode": "None",
+          "t": -0.788811,
+          "v": 0.059475,
+          "arrive_tangent": 0.0,
+          "arrive_weight": 0.0,
+          "leave_tangent": 0.0,
+          "leave_weight": 0.0
+        },
+        {
+          "interpolation": "Cubic",
+          "tangent_mode": "User",
+          "tangent_weight_mode": "None",
+          "t": -0.483613,
+          "v": 0.15033,
+          "arrive_tangent": 0.713327,
+          "arrive_weight": 0.0,
+          "leave_tangent": 0.713327,
+          "leave_weight": 0.0
+        },
+        {
+          "interpolation": "Cubic",
+          "tangent_mode": "Auto",
+          "tangent_weight_mode": "None",
+          "t": -0.203988,
+          "v": 0.413383,
+          "arrive_tangent": 0.529461,
+          "arrive_weight": 0.0,
+          "leave_tangent": 0.529461,
+          "leave_weight": 0.0
+        },
+        {
+          "interpolation": "Cubic",
+          "tangent_mode": "User",
+          "tangent_weight_mode": "None",
+          "t": 0.16783,
+          "v": 0.495244,
+          "arrive_tangent": 0.095147,
+          "arrive_weight": 0.0,
+          "leave_tangent": 0.095147,
+          "leave_weight": 0.0
+        },
+        {
+          "interpolation": "Cubic",
+          "tangent_mode": "Auto",
+          "tangent_weight_mode": "None",
+          "t": 0.364782,
+          "v": 0.77715,
+          "arrive_tangent": 0.699984,
+          "arrive_weight": 0.0,
+          "leave_tangent": 0.699984,
+          "leave_weight": 0.0
+        },
+        {
+          "interpolation": "Linear",
+          "tangent_mode": "Auto",
+          "tangent_weight_mode": "None",
+          "t": 0.813163,
+          "v": 0.946967,
+          "arrive_tangent": 0.0,
+          "arrive_weight": 0.0,
+          "leave_tangent": 0.0,
+          "leave_weight": 0.0
+        }
+      ],
+      [
+        {
+          "interpolation": "Cubic",
+          "tangent_mode": "Auto",
+          "tangent_weight_mode": "None",
+          "t": -0.788811,
+          "v": 0.065,
+          "arrive_tangent": 0.0,
+          "arrive_weight": 0.0,
+          "leave_tangent": 0.0,
+          "leave_weight": 0.0
+        },
+        {
+          "interpolation": "Cubic",
+          "tangent_mode": "Auto",
+          "tangent_weight_mode": "None",
+          "t": -0.483613,
+          "v": 0.13545,
+          "arrive_tangent": 0.406277,
+          "arrive_weight": 0.0,
+          "leave_tangent": 0.406277,
+          "leave_weight": 0.0
+        },
+        {
+          "interpolation": "Cubic",
+          "tangent_mode": "Auto",
+          "tangent_weight_mode": "None",
+          "t": -0.203988,
+          "v": 0.3026,
+          "arrive_tangent": 0.375398,
+          "arrive_weight": 0.0,
+          "leave_tangent": 0.375398,
+          "leave_weight": 0.0
+        },
+        {
+          "interpolation": "Cubic",
+          "tangent_mode": "User",
+          "tangent_weight_mode": "None",
+          "t": 0.16783,
+          "v": 0.38,
+          "arrive_tangent": 0.160788,
+          "arrive_weight": 0.0,
+          "leave_tangent": 0.160788,
+          "leave_weight": 0.0
+        },
+        {
+          "interpolation": "Cubic",
+          "tangent_mode": "Auto",
+          "tangent_weight_mode": "None",
+          "t": 0.364782,
+          "v": 0.7735,
+          "arrive_tangent": 0.960744,
+          "arrive_weight": 0.0,
+          "leave_tangent": 0.960744,
+          "leave_weight": 0.0
+        },
+        {
+          "interpolation": "Linear",
+          "tangent_mode": "Auto",
+          "tangent_weight_mode": "None",
+          "t": 0.813163,
+          "v": 1.0,
+          "arrive_tangent": 0.0,
+          "arrive_weight": 0.0,
+          "leave_tangent": 0.0,
+          "leave_weight": 0.0
+        }
+      ]
+    ]
+  }
+}

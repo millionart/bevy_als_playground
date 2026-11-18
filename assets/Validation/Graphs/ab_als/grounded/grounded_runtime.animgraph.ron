@@ -1,0 +1,13 @@
+(
+    nodes: [
+        (id: "17150000-0000-4000-8000-000000000001", name: "grounded states runtime", inner: { "als_ext::InterruptibleFsmNode": (fsm: "Validation/Graphs/ab_als/grounded/grounded_states.fsm.ron", state_pose_output: "Result", outer_pose_output: "pose", internal_time_key: "als_grounded_delta_seconds", expose_telemetry: false, state_aliases: [(state_id: "17120000-0000-4000-8000-000000000007", member_state_ids: ["17120000-0000-4000-8000-000000000003", "17120000-0000-4000-8000-000000000004", "17120000-0000-4000-8000-000000000005"]), (state_id: "17120000-0000-4000-8000-000000000008", member_state_ids: ["17120000-0000-4000-8000-000000000002", "17120000-0000-4000-8000-000000000004", "17120000-0000-4000-8000-000000000005"])]) }, should_debug: false),
+        (id: "17150000-0000-4000-8000-000000000002", name: "grounded transition driver", inner: { "als_ext::DirectTransitionEventNode": (key: "als_grounded_transition_index", default_value: -1.0, transitions: [("17130000-0000-4000-8000-000000000100"), ("17130000-0000-4000-8000-000000000101"), ("17130000-0000-4000-8000-000000000102"), ("17130000-0000-4000-8000-000000000103"), ("17130000-0000-4000-8000-000000000104"), ("17130000-0000-4000-8000-000000000105"), ("17130000-0000-4000-8000-000000000106"), ("17130000-0000-4000-8000-000000000107"), ("17130000-0000-4000-8000-000000000108"), ("17130000-0000-4000-8000-000000000109"), ("17130000-0000-4000-8000-000000000110"), ("17130000-0000-4000-8000-000000000111")]) }, should_debug: false),
+    ],
+    edges_inverted: {
+        NodeData("17150000-0000-4000-8000-000000000001", "driver_events"): NodeData("17150000-0000-4000-8000-000000000002", "event"),
+        OutputData("pose"): NodeData("17150000-0000-4000-8000-000000000001", "pose"),
+    },
+    io_spec: (input_times: [], input_data: {}, output_time: false, output_data: { "pose": Pose }, input_order: {}, output_order: { Data("pose"): 0 }),
+    default_data: {},
+    editor_metadata: (node_positions: { "17150000-0000-4000-8000-000000000001": (0.0, 0.0), "17150000-0000-4000-8000-000000000002": (-320.0, 0.0) }, input_position: (0.0, 0.0), output_position: (320.0, 0.0), input_param_order: {}, input_time_order: {}, output_data_order: {}, output_pose_order: {}),
+)

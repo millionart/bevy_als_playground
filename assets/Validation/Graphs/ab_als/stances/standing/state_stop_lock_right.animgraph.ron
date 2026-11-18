@@ -1,0 +1,53 @@
+(
+    nodes: [
+        (
+            id: "15061000-0000-4000-8000-000000000001",
+            name: "Use cached pose 'Movement Details'",
+            inner: { "als_ext::SourceScopedCachedPoseUseNode": (cache_node: "Save cached pose 'Movement Details'") },
+            should_debug: false,
+        ),
+        (
+            id: "15061000-0000-4000-8000-000000000002",
+            name: "Modify Curve",
+            inner: { "als_ext::SourceCurveModifyNode": (
+                curve_name: "FootRightLock",
+                curve_names: ["FootRightLock"],
+                value: 1.0,
+                pin_default: 1.0,
+                pin_defaults: [1.0],
+                value_key: "",
+                value_keys: [""],
+                source_value_path: "",
+                source_value_paths: [""],
+                alpha: 1.0,
+                apply_mode: "Blend",
+            ) },
+            should_debug: false,
+        ),
+    ],
+    edges_inverted: {
+        NodeData("15061000-0000-4000-8000-000000000002", "Source Pose"): NodeData("15061000-0000-4000-8000-000000000001", "Pose"),
+        OutputData("Result"): NodeData("15061000-0000-4000-8000-000000000002", "Pose"),
+    },
+    io_spec: (
+        input_times: [],
+        input_data: {},
+        output_time: false,
+        output_data: { "Result": Pose },
+        input_order: {},
+        output_order: { Data("Result"): 0 },
+    ),
+    default_data: {},
+    editor_metadata: (
+        node_positions: {
+            "15061000-0000-4000-8000-000000000001": (-592.0, 0.0),
+            "15061000-0000-4000-8000-000000000002": (-272.0, 0.0),
+        },
+        input_position: (0.0, 0.0),
+        output_position: (0.0, 0.0),
+        input_param_order: {},
+        input_time_order: {},
+        output_data_order: {},
+        output_pose_order: {},
+    ),
+)

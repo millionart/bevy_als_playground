@@ -1,0 +1,39 @@
+(
+    states: [
+(id: "16100000-0000-4000-8000-000000000001", label: "Idle", graph: "Validation/Graphs/ab_als/stances/crouching/state_idle.animgraph.ron", state_transition: None),
+(id: "16100000-0000-4000-8000-000000000002", label: "Move", graph: "Validation/Graphs/ab_als/stances/crouching/state_move.animgraph.ron", state_transition: None),
+(id: "16100000-0000-4000-8000-000000000003", label: "Rotate Left", graph: "Validation/Graphs/ab_als/stances/crouching/state_rotate_left.animgraph.ron", state_transition: None),
+(id: "16100000-0000-4000-8000-000000000004", label: "Rotate Right", graph: "Validation/Graphs/ab_als/stances/crouching/state_rotate_right.animgraph.ron", state_transition: None),
+(id: "16100000-0000-4000-8000-000000000005", label: "Stop", graph: "Validation/Graphs/ab_als/stances/crouching/state_stop.animgraph.ron", state_transition: None)
+],
+    transitions: [
+(id: "16100000-0000-4000-8000-000000000103", source: "16100000-0000-4000-8000-000000000001", target: "16100000-0000-4000-8000-000000000003", data: (kind: Graph(graph: "Validation/Graphs/ab_als/stances/crouching/transition_inertial_02.animgraph.ron", timed: Some(0.2)), ignore_external_events: false, reset_target_state: true)),
+(id: "16100000-0000-4000-8000-000000000106", source: "16100000-0000-4000-8000-000000000003", target: "16100000-0000-4000-8000-000000000001", data: (kind: Graph(graph: "Validation/Graphs/ab_als/stances/crouching/transition_outer_04.animgraph.ron", timed: Some(0.4)), ignore_external_events: false, reset_target_state: true)),
+(id: "16100000-0000-4000-8000-000000000107", source: "16100000-0000-4000-8000-000000000003", target: "16100000-0000-4000-8000-000000000001", data: (kind: Immediate, ignore_external_events: false, reset_target_state: true)),
+(id: "16100000-0000-4000-8000-000000000102", source: "16100000-0000-4000-8000-000000000001", target: "16100000-0000-4000-8000-000000000004", data: (kind: Graph(graph: "Validation/Graphs/ab_als/stances/crouching/transition_inertial_02.animgraph.ron", timed: Some(0.2)), ignore_external_events: false, reset_target_state: true)),
+(id: "16100000-0000-4000-8000-000000000109", source: "16100000-0000-4000-8000-000000000004", target: "16100000-0000-4000-8000-000000000001", data: (kind: Graph(graph: "Validation/Graphs/ab_als/stances/crouching/transition_outer_04.animgraph.ron", timed: Some(0.4)), ignore_external_events: false, reset_target_state: true)),
+(id: "16100000-0000-4000-8000-000000000110", source: "16100000-0000-4000-8000-000000000004", target: "16100000-0000-4000-8000-000000000001", data: (kind: Immediate, ignore_external_events: false, reset_target_state: true)),
+(id: "16100000-0000-4000-8000-000000000108", source: "16100000-0000-4000-8000-000000000003", target: "16100000-0000-4000-8000-000000000004", data: (kind: Graph(graph: "Validation/Graphs/ab_als/stances/crouching/transition_inertial_02.animgraph.ron", timed: Some(0.2)), ignore_external_events: false, reset_target_state: true)),
+(id: "16100000-0000-4000-8000-000000000111", source: "16100000-0000-4000-8000-000000000004", target: "16100000-0000-4000-8000-000000000003", data: (kind: Graph(graph: "Validation/Graphs/ab_als/stances/crouching/transition_inertial_02.animgraph.ron", timed: Some(0.2)), ignore_external_events: false, reset_target_state: true)),
+(id: "16100000-0000-4000-8000-000000000101", source: "16100000-0000-4000-8000-000000000001", target: "16100000-0000-4000-8000-000000000002", data: (kind: Graph(graph: "Validation/Graphs/ab_als/stances/crouching/transition_outer_02.animgraph.ron", timed: Some(0.2)), ignore_external_events: false, reset_target_state: true)),
+(id: "16100000-0000-4000-8000-000000000105", source: "16100000-0000-4000-8000-000000000002", target: "16100000-0000-4000-8000-000000000001", data: (kind: Graph(graph: "Validation/Graphs/ab_als/stances/crouching/transition_outer_02.animgraph.ron", timed: Some(0.2)), ignore_external_events: false, reset_target_state: true)),
+(id: "16100000-0000-4000-8000-000000000104", source: "16100000-0000-4000-8000-000000000002", target: "16100000-0000-4000-8000-000000000005", data: (kind: Graph(graph: "Validation/Graphs/ab_als/stances/crouching/transition_stop_01.animgraph.ron", timed: Some(0.1)), ignore_external_events: false, reset_target_state: true)),
+(id: "16100000-0000-4000-8000-000000000112", source: "16100000-0000-4000-8000-000000000005", target: "16100000-0000-4000-8000-000000000001", data: (kind: Graph(graph: "Validation/Graphs/ab_als/stances/crouching/transition_quickfeet_05.animgraph.ron", timed: Some(0.5)), ignore_external_events: false, reset_target_state: true))
+],
+    start_state: "16100000-0000-4000-8000-000000000001",
+    node_spec: (
+        input_times: ["movement_time"],
+        input_data: { "movement_pose": Pose },
+        output_time: true,
+        output_data: { "pose": Pose },
+        input_order: { Data("movement_pose"): 0, Time("movement_time"): 1 },
+        output_order: { Data("pose"): 2, Time: 3 },
+    ),
+    editor_metadata: (states: {
+        "16100000-0000-4000-8000-000000000001": (176.0, 0.0),
+        "16100000-0000-4000-8000-000000000002": (-16.0, -128.0),
+        "16100000-0000-4000-8000-000000000003": (-48.0, 128.0),
+        "16100000-0000-4000-8000-000000000004": (352.0, 128.0),
+        "16100000-0000-4000-8000-000000000005": (352.0, -128.0),
+    }),
+)

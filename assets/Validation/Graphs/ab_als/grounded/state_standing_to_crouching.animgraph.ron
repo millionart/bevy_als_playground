@@ -1,0 +1,9 @@
+(
+    nodes: [
+        (id: "17050000-0000-4000-8000-000000000001", name: "A_Als_StandToCrouch\nSequence Player", inner: { "als_ext::LayeredGraphNode": (graph: "Validation/Graphs/ab_als/grounded/state_standing_to_crouching_runtime.animgraph.ron", global_input_pins: [(pin: "Play Rate", key: "als_grounded_play_rate", default_value: 1.2)], output_aliases: [(child_output: "pose", outer_output: "Pose")], capture_context: true, expose_context_curves: false, hide_context_auxiliary_outputs: true, internalize_time: true) }, should_debug: false),
+    ],
+    edges_inverted: { OutputData("Result"): NodeData("17050000-0000-4000-8000-000000000001", "Pose") },
+    io_spec: (input_times: [], input_data: {}, output_time: false, output_data: { "Result": Pose }, input_order: {}, output_order: { Data("Result"): 0 }),
+    default_data: {},
+    editor_metadata: (node_positions: { "17050000-0000-4000-8000-000000000001": (-272.0, -16.0) }, input_position: (0.0, 0.0), output_position: (0.0, 0.0), input_param_order: {}, input_time_order: {}, output_data_order: {}, output_pose_order: {}),
+)

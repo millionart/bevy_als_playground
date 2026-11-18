@@ -1,0 +1,27 @@
+(
+    nodes: [
+        (id: "17060000-0000-4000-8000-000000000001", name: "crouching to standing clip", inner: { "bevy_animation_graph::builtin_nodes::ClipNode": (clip: "ALS/Animations/Transitions/A_Als_CrouchToStand.anim.ron", override_duration: None, override_interpolation: None) }, should_debug: false),
+        (id: "17060000-0000-4000-8000-000000000002", name: "crouching to standing activation", inner: { "als_ext::ConstantF32Node": (value: 1.0) }, should_debug: false),
+        (id: "17060000-0000-4000-8000-000000000003", name: "crouching to standing reset", inner: { "als_ext::ResetOnActivationNode": (threshold: 1e-6, reset_time: 0.0) }, should_debug: false),
+        (id: "17060000-0000-4000-8000-000000000004", name: "crouching to standing rate", inner: { "bevy_animation_graph::builtin_nodes::SpeedNode": () }, should_debug: false),
+        (id: "17060000-0000-4000-8000-000000000005", name: "crouching to standing source rate", inner: { "als_ext::ConstantF32Node": (value: 1.2) }, should_debug: false),
+        (id: "17060000-0000-4000-8000-000000000006", name: "crouching to standing curves", inner: { "als_ext::LayeredGraphNode": (graph: "Validation/Graphs/ab_als/grounded/state_transition_curves.animgraph.ron") }, should_debug: false),
+    ],
+    edges_inverted: {
+        NodeData("17060000-0000-4000-8000-000000000003", "active"): NodeData("17060000-0000-4000-8000-000000000002", "value"),
+        NodeData("17060000-0000-4000-8000-000000000003", "pose"): NodeData("17060000-0000-4000-8000-000000000001", "pose"), NodeTime("17060000-0000-4000-8000-000000000003", "time"): NodeTime("17060000-0000-4000-8000-000000000001"),
+        NodeData("17060000-0000-4000-8000-000000000004", "speed"): NodeData("17060000-0000-4000-8000-000000000005", "value"), NodeData("17060000-0000-4000-8000-000000000004", "pose"): NodeData("17060000-0000-4000-8000-000000000003", "pose"), NodeTime("17060000-0000-4000-8000-000000000004", "time"): NodeTime("17060000-0000-4000-8000-000000000003"),
+        OutputData("pose"): NodeData("17060000-0000-4000-8000-000000000004", "pose"), OutputTime: NodeTime("17060000-0000-4000-8000-000000000004"),
+        OutputData("PoseStanding"): NodeData("17060000-0000-4000-8000-000000000006", "PoseStanding"), OutputData("PoseCrouching"): NodeData("17060000-0000-4000-8000-000000000006", "PoseCrouching"), OutputData("PoseMoving"): NodeData("17060000-0000-4000-8000-000000000006", "PoseMoving"), OutputData("RotationYawOffset"): NodeData("17060000-0000-4000-8000-000000000006", "RotationYawOffset"), OutputData("FootLeftLock"): NodeData("17060000-0000-4000-8000-000000000006", "FootLeftLock"), OutputData("FootRightLock"): NodeData("17060000-0000-4000-8000-000000000006", "FootRightLock"), OutputData("AllowTransitions"): NodeData("17060000-0000-4000-8000-000000000006", "AllowTransitions"), OutputData("RotationYawSpeed"): NodeData("17060000-0000-4000-8000-000000000006", "RotationYawSpeed"),
+    },
+    io_spec: (input_times: [], input_data: {}, output_time: true, output_data: { "pose": Pose, "PoseStanding": F32, "PoseCrouching": F32, "PoseMoving": F32, "RotationYawOffset": F32, "FootLeftLock": F32, "FootRightLock": F32, "AllowTransitions": F32, "RotationYawSpeed": F32 }, input_order: {}, output_order: { Data("pose"): 0, Data("PoseStanding"): 1, Data("PoseCrouching"): 2, Data("PoseMoving"): 3, Data("RotationYawOffset"): 4, Data("FootLeftLock"): 5, Data("FootRightLock"): 6, Data("AllowTransitions"): 7, Data("RotationYawSpeed"): 8, Time: 9 }),
+    default_data: {},
+    editor_metadata: (node_positions: {
+        "17060000-0000-4000-8000-000000000001": (-272.000, -16.000),
+        "17060000-0000-4000-8000-000000000002": (-528.000, 80.000),
+        "17060000-0000-4000-8000-000000000005": (-528.000, 176.000),
+        "17060000-0000-4000-8000-000000000006": (-272.000, 80.000),
+        "17060000-0000-4000-8000-000000000003": (-272.000, 176.000),
+        "17060000-0000-4000-8000-000000000004": (-272.000, 272.000),
+    }, input_position: (0.0, 0.0), output_position: (320.0, 0.0), input_param_order: {}, input_time_order: {}, output_data_order: {}, output_pose_order: {}),
+)

@@ -1,0 +1,65 @@
+(
+    nodes: [
+        (
+            id: "164a0000-0000-4000-8000-000000000001",
+            name: "Modify Curve",
+            inner: {
+                "als_ext::SourceCurveModifyNode": (
+                    curve_name: "RotationYawSpeed",
+                    value: 0.0,
+                    pin_default: 0.0,
+                    value_key: "als_crouching_rotation_play_rate",
+                    source_value_path: "RotateInPlaceState.PlayRate",
+                    alpha: 1.0,
+                    apply_mode: "Scale",
+                ),
+            },
+            should_debug: false,
+        ),
+        (
+            id: "164a0000-0000-4000-8000-000000000002",
+            name: "A_Als_Crouch_Rotate_90_Left\nSequence Player",
+            inner: {
+                "als_ext::SourceSequencePlayerNode": (
+                    clip: "ALS/Animations/RotateInPlace/A_Als_Crouch_Rotate_90_Left.anim.ron",
+                    additive_reference: None,
+                    additive_reference_position: 0.0,
+                    play_rate: 1.0,
+                    play_rate_key: "als_crouching_rotation_play_rate",
+                    start_position: 0.0,
+                    expose_start_position_pin: false,
+                    loop_animation: true,
+                    loop_animation_key: "als_crouching_rotate_left_loop",
+                    expose_loop_animation_pin: true,
+                    sync_group: "",
+                ),
+            },
+            should_debug: false,
+        ),
+    ],
+    edges_inverted: {
+        NodeData("164a0000-0000-4000-8000-000000000001", "Source Pose"): NodeData("164a0000-0000-4000-8000-000000000002", "Pose"),
+        OutputData("Result"): NodeData("164a0000-0000-4000-8000-000000000001", "Pose"),
+    },
+    io_spec: (
+        input_times: [],
+        input_data: {},
+        output_time: false,
+        output_data: { "Result": Pose },
+        input_order: {},
+        output_order: { Data("Result"): 0 },
+    ),
+    default_data: {},
+    editor_metadata: (
+        node_positions: {
+            "164a0000-0000-4000-8000-000000000001": (-336.0, 0.0),
+            "164a0000-0000-4000-8000-000000000002": (-720.0, -16.0),
+        },
+        input_position: (0.0, 0.0),
+        output_position: (0.0, 0.0),
+        input_param_order: {},
+        input_time_order: {},
+        output_data_order: {},
+        output_pose_order: {},
+    ),
+)

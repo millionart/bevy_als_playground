@@ -1,0 +1,28 @@
+(
+    nodes: [
+        (id: "9ccc7098-8541-4c01-8ed3-1e3cf1996812", name: "State Weight (Stop)", inner: { "als_ext::SourceScalarExpressionNode": (input_pins: [], output_pins: [(name: "ReturnValue", data_type: F32, f32_default: 0.0, bool_default: false, source_default: "0.0", global_key: "")], operation: "global", source_class: "/Script/AnimGraph.K2Node_AnimGetter", source_properties: ["/Script/AnimGraph.AnimGraphNode_StateMachine'/ALS/ALS/Character/AnimationInstances/Stances/AB_Als_Standing.AB_Als_Standing:AnimGraph.AnimGraphNode_StateMachine_6'", "/Script/AnimGraph.AnimStateNode'/ALS/ALS/Character/AnimationInstances/Stances/AB_Als_Standing.AB_Als_Standing:AnimGraph.AnimGraphNode_StateMachine_6.Standing States.AnimStateNode_4'", "/Script/CoreUObject.Class'/Script/ALS.AlsLinkedAnimationInstance'", "/Script/Engine.AnimBlueprint'/ALS/ALS/Character/AnimationInstances/Stances/AB_Als_Standing.AB_Als_Standing'", "LOCGEN_FORMAT_ORDERED(NSLOCTEXT(\"AnimGetter\", \"NodeTitle\", \"{0} ({1})\"), NSLOCTEXT(\"UObjectDisplayNames\", \"AnimInstance:GetInstanceStateWeight\", \"State Weight\"), NSLOCTEXT(\"\", \"DF1A7B3047E8B7B3B378348D4FF27A73\", \"Stop\"))", "True", "False", "(MemberName=\"GetInstanceStateWeight\",MemberGuid=00000000000000000000000000000000,bSelfContext=True)", "Unset", "-464", "0", "0", "0", "NoPins", "Enabled", "False", "False", "False", "False", "False", "False", "False", "False", "False", "0", "99759B8F435CB7296929BE959E8BDA60"]) }, should_debug: false),
+        (id: "c6420691-e5dc-4125-8d7b-50585fb8ddcd", name: "float >= float", inner: { "als_ext::SourceScalarExpressionNode": (input_pins: [(name: "A", data_type: F32, f32_default: 0.0, bool_default: false, source_default: "", global_key: ""), (name: "B", data_type: F32, f32_default: 1.0, bool_default: false, source_default: "1.000000", global_key: "")], output_pins: [(name: "ReturnValue", data_type: Bool, f32_default: 0.0, bool_default: false, source_default: "", global_key: "")], operation: "greater_equal", source_class: "/Script/BlueprintGraph.K2Node_PromotableOperator", source_properties: ["GreaterEqual", "0", "True", "False", "(MemberParent=\"/Script/CoreUObject.Class'/Script/Engine.KismetMathLibrary'\",MemberName=\"GreaterEqual_DoubleDouble\",MemberGuid=00000000000000000000000000000000)", "Unset", "-224", "0", "0", "0", "NoPins", "Enabled", "False", "False", "False", "False", "False", "False", "False", "False", "False", "0", "64D428504433743435CD00BE4D66E0F0"]) }, should_debug: false),
+    ],
+    edges_inverted: {
+        NodeData("c6420691-e5dc-4125-8d7b-50585fb8ddcd", "A"): NodeData("9ccc7098-8541-4c01-8ed3-1e3cf1996812", "ReturnValue"),
+        OutputData("Can Enter Transition"): NodeData("c6420691-e5dc-4125-8d7b-50585fb8ddcd", "ReturnValue"),
+    },
+    io_spec: (
+        input_times: [],
+        input_data: {},
+        output_time: false,
+        output_data: { "Can Enter Transition": Bool },
+        input_order: {},
+        output_order: { Data("Can Enter Transition"): 0 },
+    ),
+    default_data: {},
+    editor_metadata: (
+        node_positions: { "9ccc7098-8541-4c01-8ed3-1e3cf1996812": (-464.000, 0.000), "c6420691-e5dc-4125-8d7b-50585fb8ddcd": (-224.000, 0.000) },
+        input_position: (0.0, 0.0),
+        output_position: (0.0, 0.0),
+        input_param_order: {},
+        input_time_order: {},
+        output_data_order: {},
+        output_pose_order: {},
+    ),
+)

@@ -1,0 +1,58 @@
+(
+    nodes: [
+        (
+            id: "33a17a24-8ad6-49f5-a5a6-de7c943b299f",
+            name: "idle clip",
+            inner: {
+                "bevy_animation_graph::builtin_nodes::ClipNode": (
+                    clip: "ALS/Animations/Base/A_Als_Idle.anim.ron",
+                    override_duration: None,
+                    override_interpolation: None,
+                ),
+            },
+            should_debug: false,
+        ),
+        (
+            id: "20fe71f2-f4a7-4275-a89f-a19162afd1eb",
+            name: "loop",
+            inner: {
+                "bevy_animation_graph::builtin_nodes::LoopNode": (
+                    interpolation_period: 0.0,
+                ),
+            },
+            should_debug: false,
+        ),
+    ],
+    edges_inverted: {
+        NodeTime("20fe71f2-f4a7-4275-a89f-a19162afd1eb", "time"): NodeTime("33a17a24-8ad6-49f5-a5a6-de7c943b299f"),
+        OutputData("pose"): NodeData("20fe71f2-f4a7-4275-a89f-a19162afd1eb", "pose"),
+        OutputTime: NodeTime("20fe71f2-f4a7-4275-a89f-a19162afd1eb"),
+        NodeData("20fe71f2-f4a7-4275-a89f-a19162afd1eb", "pose"): NodeData("33a17a24-8ad6-49f5-a5a6-de7c943b299f", "pose"),
+    },
+    io_spec: (
+        input_times: [],
+        input_data: {},
+        output_time: true,
+        output_data: {
+            "pose": Pose,
+        },
+        input_order: {},
+        output_order: {
+            Data("pose"): 2,
+            Time: 3,
+        },
+    ),
+    default_data: {},
+    editor_metadata: (
+        node_positions: {
+            "33a17a24-8ad6-49f5-a5a6-de7c943b299f": (100.0, 300.0),
+            "20fe71f2-f4a7-4275-a89f-a19162afd1eb": (320.0, 300.0),
+        },
+        input_position: (10.0, 300.0),
+        output_position: (500.0, 300.0),
+        input_param_order: {},
+        input_time_order: {},
+        output_data_order: {},
+        output_pose_order: {},
+    ),
+)

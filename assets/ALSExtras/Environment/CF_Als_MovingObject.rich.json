@@ -1,0 +1,49 @@
+{
+  "source_curve": "/ALS/ALSExtras/Environment/CF_Als_MovingObject.CF_Als_MovingObject",
+  "keys": [
+    {
+      "interpolation": "Cubic",
+      "tangent_mode": "Auto",
+      "tangent_weight_mode": "None",
+      "t": 0.0,
+      "v": 0.0,
+      "arrive_tangent": 0.0,
+      "arrive_weight": 0.0,
+      "leave_tangent": 0.0,
+      "leave_weight": 0.0
+    },
+    {
+      "interpolation": "Cubic",
+      "tangent_mode": "User",
+      "tangent_weight_mode": "None",
+      "t": 0.375,
+      "v": 0.25,
+      "arrive_tangent": 1.994433,
+      "arrive_weight": 0.0,
+      "leave_tangent": 1.994435,
+      "leave_weight": 0.0
+    },
+    {
+      "interpolation": "Cubic",
+      "tangent_mode": "User",
+      "tangent_weight_mode": "None",
+      "t": 0.625,
+      "v": 0.75,
+      "arrive_tangent": 2.019414,
+      "arrive_weight": 0.0,
+      "leave_tangent": 2.019416,
+      "leave_weight": 0.0
+    },
+    {
+      "interpolation": "Cubic",
+      "tangent_mode": "User",
+      "tangent_weight_mode": "None",
+      "t": 1.0,
+      "v": 1.0,
+      "arrive_tangent": 0.0,
+      "arrive_weight": 0.0,
+      "leave_tangent": 0.0,
+      "leave_weight": 0.0
+    }
+  ]
+}

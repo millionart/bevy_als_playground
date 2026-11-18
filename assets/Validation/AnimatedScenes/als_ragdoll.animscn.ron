@@ -1,0 +1,8 @@
+(
+    source: "ALS/Character/SKM_Als.glb#Scene0",
+    path_to_player: [],
+    animation_graph: "ALS/Character/AB_Als.runtime.animgraph.ron",
+    skeleton: "ALS/Character/SKM_Als.skn.ron",
+    ragdoll: Some("ALS/Character/PA_Als.rag.ron"),
+    ragdoll_bone_map: Some("ALS/Character/PA_Als.bm.ron"),
+)

@@ -1,0 +1,32 @@
+{
+  "format": "playground_lighting_v1",
+  "source_world": "/ALS/ALSExtras/Levels/L_Als_Playground.L_Als_Playground",
+  "exposure": {
+    "histogram_log_luminance_range": [
+      -10.0,
+      20.0
+    ],
+    "filter": [
+      0.1,
+      0.9
+    ],
+    "speed_brighten": 3.0,
+    "speed_darken": 1.0,
+    "exponential_transition_distance": 1.5,
+    "compensation_ev": -1.4739311883324122,
+    "unit_exposure_ev100": -0.2630344058337938,
+    "contrast": 1.0
+  },
+  "sky_light": {
+    "intensity": 2.0,
+    "capture_resolution": 128,
+    "capture_origin": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "sky_distance_threshold": 1500.0,
+    "lower_hemisphere_black": true,
+    "real_time_capture": false
+  }
+}

@@ -1,0 +1,31 @@
+(
+    nodes: [
+        (id: "19060000-0000-4000-8000-000000000001", name: "Spine slot", inner: { "als_ext::SlotNode": (slot_name: "Spine", pose_key: "als_layering_slot_spine_pose", weight_key: "als_layering_slot_spine_weight", layer_weight_key: "als_layering_spine_slot") }, should_debug: false),
+        (id: "19060000-0000-4000-8000-000000000002", name: "spine mesh additive", inner: { "als_ext::MeshSpaceAdditiveNode": () }, should_debug: false),
+        (id: "19060000-0000-4000-8000-000000000003", name: "spine outer blend", inner: { "bevy_animation_graph::builtin_nodes::BlendNode": (mode: LinearInterpolate, sync_mode: Absolute, blend_primary: First, use_bone_mask: false) }, should_debug: false),
+        (id: "19060000-0000-4000-8000-000000000004", name: "LayerSpine", inner: { "als_ext::GlobalF32InputNode": (key: "als_layering_spine") }, should_debug: false),
+        (id: "19060000-0000-4000-8000-000000000005", name: "LayerSpineAdditive", inner: { "als_ext::GlobalF32InputNode": (key: "als_layering_spine_additive") }, should_debug: false),
+    ],
+    edges_inverted: {
+        NodeData("19060000-0000-4000-8000-000000000001", "base_pose"): InputData(Passthrough("overlay_pose")), NodeTime("19060000-0000-4000-8000-000000000001", "base_time"): InputTime(Passthrough("overlay_time")),
+        NodeData("19060000-0000-4000-8000-000000000002", "pose_a"): NodeData("19060000-0000-4000-8000-000000000001", "pose"), NodeTime("19060000-0000-4000-8000-000000000002", "time_a"): NodeTime("19060000-0000-4000-8000-000000000001"), NodeData("19060000-0000-4000-8000-000000000002", "pose_b"): InputData(Passthrough("additive_pose")), NodeTime("19060000-0000-4000-8000-000000000002", "time_b"): InputTime(Passthrough("additive_time")), NodeData("19060000-0000-4000-8000-000000000002", "factor"): NodeData("19060000-0000-4000-8000-000000000005", "als_layering_spine_additive"),
+        NodeData("19060000-0000-4000-8000-000000000003", "pose_a"): InputData(Passthrough("locomotion_pose")), NodeTime("19060000-0000-4000-8000-000000000003", "time_a"): InputTime(Passthrough("locomotion_time")), NodeData("19060000-0000-4000-8000-000000000003", "pose_b"): NodeData("19060000-0000-4000-8000-000000000002", "pose"), NodeTime("19060000-0000-4000-8000-000000000003", "time_b"): NodeTime("19060000-0000-4000-8000-000000000002"), NodeData("19060000-0000-4000-8000-000000000003", "factor"): NodeData("19060000-0000-4000-8000-000000000004", "als_layering_spine"),
+        OutputData("pose"): NodeData("19060000-0000-4000-8000-000000000003", "pose"), OutputTime: NodeTime("19060000-0000-4000-8000-000000000003"),
+    },
+    io_spec: (input_times: [Passthrough("locomotion_time"), Passthrough("overlay_time"), Passthrough("additive_time")], input_data: { Passthrough("locomotion_pose"): Pose, Passthrough("overlay_pose"): Pose, Passthrough("additive_pose"): Pose }, output_time: true, output_data: { "pose": Pose }, input_order: {
+        Time(Passthrough("locomotion_time")): 0,
+        Time(Passthrough("overlay_time")): 1,
+        Time(Passthrough("additive_time")): 2,
+        Data(Passthrough("locomotion_pose")): 3,
+        Data(Passthrough("overlay_pose")): 4,
+        Data(Passthrough("additive_pose")): 5,
+    }, output_order: { Data("pose"): 0, Time: 1 }),
+    default_data: {},
+    editor_metadata: (node_positions: {
+        "19060000-0000-4000-8000-000000000001": (-1952.000, -2144.000),
+        "19060000-0000-4000-8000-000000000004": (-1920.000, -608.000),
+        "19060000-0000-4000-8000-000000000005": (-1904.000, -96.000),
+        "19060000-0000-4000-8000-000000000002": (-976.000, -1520.000),
+        "19060000-0000-4000-8000-000000000003": (-288.000, -1184.000),
+    }, input_position: (0.0, 0.0), output_position: (320.0, 0.0), input_param_order: {}, input_time_order: {}, output_data_order: {}, output_pose_order: {}),
+)

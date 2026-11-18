@@ -1,0 +1,143 @@
+{
+  "format": "als_moving_actors_v1",
+  "source_world": "/ALS/ALSExtras/Levels/L_Als_Playground.L_Als_Playground",
+  "source_actor": "/ALS/ALSExtras/Environment/B_Als_MovingObject.B_Als_MovingObject",
+  "actors": [
+    {
+      "name": "BP_SimpleMovingObject",
+      "actor": {
+        "translation": [
+          22.75,
+          0.0,
+          -28.75
+        ],
+        "rotation": [
+          -0.0,
+          -0.0,
+          -0.0,
+          1.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "primitive": {
+        "translation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation": [
+          -0.0,
+          -0.0,
+          -0.0,
+          1.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "mesh_scene": "ALSExtras/Environment/Meshes/SM_Als_Block_2x2.glb#Scene0",
+      "mesh_base": "SM_Als_Block_2x2",
+      "collider_center": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "collider_rotation": [
+        -0.0,
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "half_extents": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "start": [
+        22.75,
+        0.0,
+        -28.75
+      ],
+      "end": [
+        22.75,
+        2.75,
+        -28.75
+      ],
+      "duration": 1.25
+    },
+    {
+      "name": "BP_SimpleMovingObject2",
+      "actor": {
+        "translation": [
+          19.0,
+          0.0,
+          -28.75
+        ],
+        "rotation": [
+          -0.0,
+          -0.0,
+          -0.0,
+          1.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "primitive": {
+        "translation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation": [
+          -0.0,
+          -0.0,
+          -0.0,
+          1.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "mesh_scene": "ALSExtras/Environment/Meshes/SM_Als_Block_2x2.glb#Scene0",
+      "mesh_base": "SM_Als_Block_2x2",
+      "collider_center": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "collider_rotation": [
+        -0.0,
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "half_extents": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "start": [
+        19.0,
+        0.0,
+        -28.75
+      ],
+      "end": [
+        12.5,
+        0.0,
+        -28.75
+      ],
+      "duration": 1.75
+    }
+  ]
+}

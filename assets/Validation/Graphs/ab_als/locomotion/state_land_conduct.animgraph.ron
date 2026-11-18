@@ -1,0 +1,28 @@
+(
+    nodes: [
+        (id: "18030000-0000-4000-8000-000000000001", name: "PoseInAir zero", inner: { "als_ext::ConstantF32Node": (value: 0.0) }, should_debug: false),
+    ],
+    edges_inverted: {
+        OutputData("pose"): InputData(Passthrough("grounded_pose")), OutputTime: InputTime(Passthrough("grounded_time")),
+        OutputData("PoseStanding"): InputData(Passthrough("grounded_PoseStanding")), OutputData("PoseCrouching"): InputData(Passthrough("grounded_PoseCrouching")), OutputData("PoseMoving"): InputData(Passthrough("grounded_PoseMoving")), OutputData("RotationYawOffset"): InputData(Passthrough("grounded_RotationYawOffset")), OutputData("FootLeftLock"): InputData(Passthrough("grounded_FootLeftLock")), OutputData("FootRightLock"): InputData(Passthrough("grounded_FootRightLock")), OutputData("AllowTransitions"): InputData(Passthrough("grounded_AllowTransitions")), OutputData("RotationYawSpeed"): InputData(Passthrough("grounded_RotationYawSpeed")), OutputData("PoseGrounded"): InputData(Passthrough("grounded_PoseGrounded")), OutputData("FootLeftIk"): InputData(Passthrough("grounded_FootLeftIk")), OutputData("FootRightIk"): InputData(Passthrough("grounded_FootRightIk")), OutputData("PoseInAir"): NodeData("18030000-0000-4000-8000-000000000001", "value"),
+    },
+    io_spec: (input_times: [Passthrough("grounded_time")], input_data: { Passthrough("grounded_pose"): Pose, Passthrough("grounded_PoseStanding"): F32, Passthrough("grounded_PoseCrouching"): F32, Passthrough("grounded_PoseMoving"): F32, Passthrough("grounded_RotationYawOffset"): F32, Passthrough("grounded_FootLeftLock"): F32, Passthrough("grounded_FootRightLock"): F32, Passthrough("grounded_AllowTransitions"): F32, Passthrough("grounded_RotationYawSpeed"): F32, Passthrough("grounded_PoseGrounded"): F32, Passthrough("grounded_FootLeftIk"): F32, Passthrough("grounded_FootRightIk"): F32 }, output_time: true, output_data: { "pose": Pose, "PoseStanding": F32, "PoseCrouching": F32, "PoseMoving": F32, "RotationYawOffset": F32, "FootLeftLock": F32, "FootRightLock": F32, "AllowTransitions": F32, "RotationYawSpeed": F32, "PoseGrounded": F32, "FootLeftIk": F32, "FootRightIk": F32, "PoseInAir": F32 }, input_order: {
+        Time(Passthrough("grounded_time")): 0,
+        Data(Passthrough("grounded_pose")): 1,
+        Data(Passthrough("grounded_PoseStanding")): 2,
+        Data(Passthrough("grounded_PoseCrouching")): 3,
+        Data(Passthrough("grounded_PoseMoving")): 4,
+        Data(Passthrough("grounded_RotationYawOffset")): 5,
+        Data(Passthrough("grounded_FootLeftLock")): 6,
+        Data(Passthrough("grounded_FootRightLock")): 7,
+        Data(Passthrough("grounded_AllowTransitions")): 8,
+        Data(Passthrough("grounded_RotationYawSpeed")): 9,
+        Data(Passthrough("grounded_PoseGrounded")): 10,
+        Data(Passthrough("grounded_FootLeftIk")): 11,
+        Data(Passthrough("grounded_FootRightIk")): 12,
+    }, output_order: { Data("pose"): 0, Data("PoseStanding"): 1, Data("PoseCrouching"): 2, Data("PoseMoving"): 3, Data("RotationYawOffset"): 4, Data("FootLeftLock"): 5, Data("FootRightLock"): 6, Data("AllowTransitions"): 7, Data("RotationYawSpeed"): 8, Data("PoseGrounded"): 9, Data("FootLeftIk"): 10, Data("FootRightIk"): 11, Data("PoseInAir"): 12, Time: 13 }),
+    default_data: {},
+    editor_metadata: (node_positions: {
+        "18030000-0000-4000-8000-000000000001": (-640.000, 96.000),
+    }, input_position: (0.0, 0.0), output_position: (320.0, 0.0), input_param_order: {}, input_time_order: {}, output_data_order: {}, output_pose_order: {}),
+)
