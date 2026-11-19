@@ -4,7 +4,6 @@ use std::{collections::HashMap, path::PathBuf};
 use crate::source_gaussian_bloom::{SourceGaussianBloom, SourceGaussianBloomPlugin};
 use bevy::asset::AssetId;
 use bevy::camera::{Exposure, visibility::NoFrustumCulling};
-use bevy::color::LinearRgba;
 use bevy::core_pipeline::tonemapping::Tonemapping;
 use bevy::core_pipeline::tonemapping::TonemappingLuts;
 use bevy::light::{CascadeShadowConfigBuilder, NotShadowCaster};

@@ -49,7 +49,7 @@ fn exclude_character_receivers(
     libraries: Res<Assets<FootprintLibrary>>,
 ) {
     let Some(library) = server
-        .get_handle("ALS/Data/Footstep/footprint.runtime.json")
+        .get_handle(bevy_als::als_asset_path("ALS/Data/Footstep/footprint.runtime.json"))
         .and_then(|handle| libraries.get(&handle))
     else {
         return;

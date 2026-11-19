@@ -4,20 +4,19 @@ A runnable example of a game using [bevy_als](https://github.com/millionart/bevy
 
 ## Add ALS to a game
 
-1. Add `bevy = "0.20.1"` and copy the `bevy_als` dependency from [Cargo.toml](Cargo.toml). Add `avian3d = "0.8"` to run the example, which uses Avian to create a floor.
-2. Copy `assets/ALS`, `assets/ALSCamera`, and `assets/ALSRuntime` from the matching `bevy_als` checkout into your own `assets/` folder. Keep those directory names and their relative paths.
-3. Copy [the minimal character example](src/als_extras/levels/als_character.rs) into `src/main.rs`. It installs `DefaultPlugins` and `AlsPlugin`, creates a floor and camera, and runs a small `PreUpdate` system for WASD, mouse look, and jump.
+1. Add `bevy = "0.20.1"` and copy the pinned `bevy_als` dependency from [Cargo.toml](Cargo.toml).
+2. Register `.add_plugins((DefaultPlugins, bevy_als::AlsPlugin))` and call `bevy_als::spawn_als_character` in a startup system. The [character example](src/als_extras/levels/als_character.rs) shows the spawn call, camera, and an Avian floor.
+3. Write `AlsInputCommand` on each controlled actor from your input system in `PreUpdate`. Refresh values every frame and pulse `*_pressed` fields for one update. The character example maps WASD, mouse look, and jump with Bevy input resources.
 
-In an existing game, write to each controlled actor's `AlsInputCommand` from your own input system. Write the current values every frame, and pulse `*_pressed` fields for one update. If you already have a camera, give it `bevy::core_pipeline::prepass::DepthPrepass` to render ALS footprints. If you already install Avian, use `AlsPlugin::physics_plugins()` to configure it.
+If you already have a camera, give it `bevy::core_pipeline::prepass::DepthPrepass` to render ALS footprints. If you already install Avian, use `AlsPlugin::physics_plugins()` to configure it.
 
 For the full Playground bindings, see [the adapter](src/als_extras/core/input.rs) and [the app setup](src/als_extras/levels/manual_playground.rs). The app installs `AlsInputPlugin` and calls `spawn_als_actions` with `AlsInputMap::default()` for each local player. This adapter is where the app depends on Enhanced Input.
 
 ## Run the Playground
 
-Check out `bevy_als` next to this repository at the revision in [Cargo.toml](Cargo.toml). From the Playground root, link the three ALS asset directories on macOS or Linux, or copy them into `assets/` on any platform.
+Cargo fetches the revision in [Cargo.toml](Cargo.toml). The plugin supplies the character, camera, and animation assets. From the Playground root, run:
 
 ```sh
-ln -s ../../bevy_als/assets/{ALS,ALSCamera,ALSRuntime} assets/
 cargo run --locked --jobs 2
 ```
 

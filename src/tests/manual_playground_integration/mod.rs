@@ -5623,7 +5623,7 @@ fn drive_foot_ik_avatar_replacement(
             commands
                 .spawn((
                     AnimatedSceneHandle {
-                        handle: assets.load(ALS_LINKED_ANIMATED_SCENE),
+                        handle: assets.load(bevy_als::als_asset_path(ALS_LINKED_ANIMATED_SCENE)),
                         override_source: Some(AnimationSource::None),
                     },
                     AlsCharacterAvatar { character },
@@ -13570,9 +13570,10 @@ fn observe_manual_integration(
                 .and_then(|avatar| motion_probe.object_scenes.get(avatar).ok())
                 .and_then(|instance| players.get(instance.player_entity()).ok())
                 .and_then(|(_, context)| context);
-            let metadata: serde_json::Value = serde_json::from_str(include_str!(
-                "../../../assets/ALS/Character/als_character_curves.runtime.json"
-            ))
+            let metadata: serde_json::Value = serde_json::from_slice(
+                bevy_als::als_asset_bytes("ALS/Character/als_character_curves.runtime.json")
+                    .expect("ALS data must be packaged"),
+            )
             .unwrap();
             let mut expected: Vec<(String, String)> = metadata["curves"]
                 .as_array()
@@ -13725,9 +13726,10 @@ fn observe_manual_integration(
                 let mapping: std::collections::HashMap<
                     bevy_als::extensions::SourceCurveName,
                     (String, f32),
-                > = serde_json::from_str(include_str!(
-                    "../../../assets/ALSCamera/als_camera_curves.runtime.json"
-                ))
+                > = serde_json::from_slice(
+                    bevy_als::als_asset_bytes("ALSCamera/als_camera_curves.runtime.json")
+                        .expect("ALS data must be packaged"),
+                )
                 .unwrap();
                 for (name, value) in &context.curves {
                     let (name, value) = mapping
@@ -14841,6 +14843,13 @@ fn observe_manual_integration(
 
 #[cfg(test)]
 mod tests {
+    fn packaged_graph(path: &str) -> &'static str {
+        std::str::from_utf8(
+            bevy_als::als_asset_bytes(path).unwrap_or_else(|| panic!("Missing bundled graph {path}")),
+        )
+        .expect("Bundled graph must be UTF-8")
+    }
+
     #[test]
     fn browser_review_air_roll_uses_the_configured_mode_change_ragdoll_entry() {
         use bevy_als::als::{
@@ -15879,12 +15888,7 @@ mod tests {
         let down = head_weighted_pose(poses.clone(), head_look_weights(-45.0)).unwrap();
         let up = head_weighted_pose(poses, head_look_weights(45.0)).unwrap();
         assert!(default_overlay_pose_error(&down, &up).unwrap() > 0.1);
-        let graph = std::fs::read_to_string(
-            std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
-                .join("assets")
-                .join(HEAD_GRAPH),
-        )
-        .unwrap();
+        let graph = packaged_graph(HEAD_GRAPH);
         for (_, node, _) in HEAD_BOUNDARIES {
             assert!(
                 graph.contains(&format!("name: {node:?}")),
@@ -16016,9 +16020,9 @@ mod tests {
         app.finish();
         app.cleanup();
         let server = app.world().resource::<AssetServer>();
-        let graph: Handle<AnimationGraph> = server.load(HEAD_GRAPH);
+        let graph: Handle<AnimationGraph> = server.load(bevy_als::als_asset_path(HEAD_GRAPH));
         let base: Handle<GraphClip> =
-            server.load("ALS/Animations/Overlays/Other/A_Als_Default_Poses.anim.ron");
+            server.load(bevy_als::als_asset_path("ALS/Animations/Overlays/Other/A_Als_Default_Poses.anim.ron"));
         let deadline = Instant::now() + Duration::from_secs(30);
         let mut previous_loaded = 0;
         loop {
@@ -16192,9 +16196,9 @@ mod tests {
         app.finish();
         app.cleanup();
         let server = app.world().resource::<AssetServer>();
-        let graph: Handle<AnimationGraph> = server.load(LAYERING_GRAPH);
+        let graph: Handle<AnimationGraph> = server.load(bevy_als::als_asset_path(LAYERING_GRAPH));
         let base: Handle<GraphClip> =
-            server.load("ALS/Animations/Overlays/Other/A_Als_Default_Poses.anim.ron");
+            server.load(bevy_als::als_asset_path("ALS/Animations/Overlays/Other/A_Als_Default_Poses.anim.ron"));
         let deadline = Instant::now() + Duration::from_secs(30);
         let mut previous_loaded = 0;
         loop {
@@ -16390,7 +16394,7 @@ mod tests {
             "ALS/Animations/Base/A_Als_Idle.anim.ron",
             "ALS/Animations/Base/A_Als_Stand_Pose.anim.ron",
         ]
-        .map(|path| server.load(path));
+        .map(|path| server.load(bevy_als::als_asset_path(path)));
         let deadline = std::time::Instant::now() + std::time::Duration::from_secs(30);
         let mut previous = 0;
         loop {
@@ -16557,7 +16561,7 @@ mod tests {
         assert_eq!(probe.air_window(None), None);
         probe.case_index = 5;
         assert_eq!(probe.air_window(Some(0.0)), None);
-        let graph = std::fs::read_to_string(format!("assets/{DEFAULT_OVERLAY_GRAPH}")).unwrap();
+        let graph = packaged_graph(DEFAULT_OVERLAY_GRAPH);
         for index in 0..6 {
             let window = default_overlay_window(
                 index,
@@ -17038,17 +17042,16 @@ mod tests {
             ),
             (LOCOMOTION_JUMP, "Jump States\nState Machine", "Flail", 3),
         ] {
-            let graph = std::fs::read_to_string(format!("assets/{path}")).unwrap();
+            let graph = packaged_graph(path);
             assert!(graph.contains(&format!("name: {:?}", title)));
             assert_eq!(locomotion_state_index(title, label), Some(expected));
             assert_eq!(locomotion_state_index("Locomotion States", label), None);
         }
         for (index, (variant, title)) in LOCOMOTION_CLIPS.iter().enumerate() {
-            let graph = std::fs::read_to_string(format!("assets/{}", locomotion_clip_graph(index)))
-                .unwrap();
+            let graph = packaged_graph(locomotion_clip_graph(index));
             assert!(graph.contains(&format!("name: {:?}", title)), "{variant}");
         }
-        let root = include_str!("../../../assets/ALS/Character/AB_Als/AnimGraph.animgraph.ron");
+        let root = packaged_graph("ALS/Character/AB_Als/AnimGraph.animgraph.ron");
         assert!(root.contains(LOCOMOTION_ROOT));
     }
 
@@ -19045,9 +19048,10 @@ mod tests {
 
     #[test]
     fn mantle_foot_ik_follows_source_curve_weights() {
-        let source: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../assets/ALS/Animations/Actions/Mantle/AM_Als_Mantle_Low.montage.json"
-        ))
+        let source: serde_json::Value = serde_json::from_slice(
+            bevy_als::als_asset_bytes("ALS/Animations/Actions/Mantle/AM_Als_Mantle_Low.montage.json")
+                .expect("ALS data must be packaged"),
+        )
         .unwrap();
         let curves: bevy_als::extensions::AlsPoseCurves =
             serde_json::from_value(source["playback"]["montage_curves"].clone()).unwrap();
@@ -19154,11 +19158,7 @@ mod tests {
                 .unwrap();
             arena
         }
-        let installed = std::fs::read_to_string(
-            std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
-                .join("assets/ALS/Character/AB_Als/AnimGraph.animgraph.ron"),
-        )
-        .unwrap();
+        let installed = packaged_graph("ALS/Character/AB_Als/AnimGraph.animgraph.ron");
         assert!(installed.contains(&format!("name: {MANTLE_SLOT_NODE:?}")));
         let mut world = World::new();
         let entity = world.spawn_empty().id();
@@ -19809,7 +19809,7 @@ mod tests {
                 "{}",
                 boundary.graph
             );
-            let graph = std::fs::read_to_string(format!("assets/{}", boundary.graph)).unwrap();
+            let graph = packaged_graph(boundary.graph);
             assert!(
                 graph.contains(&format!("name: {:?}", boundary.node)),
                 "{}: {}",

@@ -95,7 +95,7 @@ pub(super) fn observe_object(
         let clip = motion
             .asset_server
             .get_handle::<bevy_animation_graph::core::animation_clip::GraphClip>(
-                "ALS/OverlayObjects/Bow/A_Als_Bow_Draw.anim.ron",
+                bevy_als::als_asset_path("ALS/OverlayObjects/Bow/A_Als_Bow_Draw.anim.ron"),
             )?;
         let clip = motion.clips.get(&clip)?;
         let amount = context.map_or(0.0, |context| context.f32("PoseAiming").unwrap_or(0.0));

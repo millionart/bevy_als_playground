@@ -1,8 +1,9 @@
 static SOURCE_LIBRARY: std::sync::LazyLock<bevy_als::overlay_object::OverlayLibrary> =
     std::sync::LazyLock::new(|| {
-        serde_json::from_str(include_str!(
-            "../../../assets/ALS/Character/overlay_actor.runtime.json"
-        ))
+        serde_json::from_slice(
+            bevy_als::als_asset_bytes("ALS/Character/overlay_actor.runtime.json")
+                .expect("ALS data must be packaged"),
+        )
         .unwrap()
     });
 
@@ -535,10 +536,10 @@ mod tests {
         };
         let (mut app, _, _, _) = crate::test_support::loaded_camera_scene();
         let server = app.world().resource::<AssetServer>();
-        let relaxed: Handle<AnimationGraph> = server.load("ALS/Character/AnimationInstances/Overlays/AB_Als_PistolTwoHanded/Overlay/SM0_Pistol_States/S2_Relaxed.animgraph.ron");
-        let layering: Handle<AnimationGraph> = server.load(LAYERING_GRAPH);
+        let relaxed: Handle<AnimationGraph> = server.load(bevy_als::als_asset_path("ALS/Character/AnimationInstances/Overlays/AB_Als_PistolTwoHanded/Overlay/SM0_Pistol_States/S2_Relaxed.animgraph.ron"));
+        let layering: Handle<AnimationGraph> = server.load(bevy_als::als_asset_path(LAYERING_GRAPH));
         let sprint: Handle<GraphClip> =
-            server.load("ALS/Animations/Grounded/Sprint/A_Als_Sprint.anim.ron");
+            server.load(bevy_als::als_asset_path("ALS/Animations/Grounded/Sprint/A_Als_Sprint.anim.ron"));
         let deadline = Instant::now() + Duration::from_secs(30);
         loop {
             app.update();

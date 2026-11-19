@@ -15,9 +15,10 @@ use bevy_animation_graph::core::{
 use crate::input::AlsInputPlugin;
 
 pub(crate) static SOURCE_LIBRARY: LazyLock<OverlayLibrary> = LazyLock::new(|| {
-    serde_json::from_str(include_str!(
-        "../../assets/ALS/Character/overlay_actor.runtime.json"
-    ))
+    serde_json::from_slice(
+        bevy_als::als_asset_bytes("ALS/Character/overlay_actor.runtime.json")
+            .expect("ALS data must be packaged"),
+    )
     .expect("ALS overlay definitions")
 });
 
@@ -54,11 +55,11 @@ fn camera_scene() -> (App, Entity, Entity, Handle<AnimatedScene>) {
     let definition = app
         .world()
         .resource::<AssetServer>()
-        .load("ALSCamera/Data/als_camera.camera_component.ron");
+        .load(bevy_als::als_asset_path("ALSCamera/Data/als_camera.camera_component.ron"));
     let scene = app
         .world()
         .resource::<AssetServer>()
-        .load("ALSCamera/AB_Als_Camera.static.animscn.ron");
+        .load(bevy_als::als_asset_path("ALSCamera/AB_Als_Camera.static.animscn.ron"));
     let character = app
         .world_mut()
         .spawn((
@@ -240,7 +241,7 @@ pub(crate) fn loaded_bow_scene() -> (App, Entity, Entity) {
     let scene = app
         .world()
         .resource::<AssetServer>()
-        .load("ALS/OverlayObjects/Bow/B_Als_Bow.animscn.ron");
+        .load(bevy_als::als_asset_path("ALS/OverlayObjects/Bow/B_Als_Bow.animscn.ron"));
     let object = app
         .world_mut()
         .spawn(AnimatedSceneHandle::new(scene.clone()))

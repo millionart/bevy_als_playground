@@ -402,9 +402,9 @@ pub(crate) mod tests {
     use super::*;
 
     pub(crate) fn tag_manager(extra: &[&str]) -> bevy_gameplay_tag::GameplayTagsManager {
-        let mut rows: Vec<serde_json::Value> = serde_json::from_str(include_str!(
-            "../../../assets/ALS/Data/als_gameplay_tags.json"
-        ))
+        let mut rows: Vec<serde_json::Value> = serde_json::from_slice(
+            bevy_als::als_asset_bytes("ALS/Data/als_gameplay_tags.json").expect("ALS data must be packaged"),
+        )
         .unwrap();
         rows.extend(
             extra

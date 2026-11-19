@@ -235,14 +235,20 @@ pub fn spawn_als_actions(cmds: &mut Commands, player: Entity, map: &AlsInputMap)
         .spawn((
             Action::<StickAction>::new(),
             DeadZone::default(),
-            Bindings::spawn(Axial::new(map.move_stick[0], map.move_stick[1])),
+            Bindings::spawn((
+                Spawn(map.move_stick[0]),
+                Spawn((map.move_stick[1], SwizzleAxis::YXZ)),
+            )),
         ))
         .id();
     let look_stick = cmds
         .spawn((
             Action::<StickAction>::new(),
             DeadZone::default(),
-            Bindings::spawn(Axial::new(map.look_stick[0], map.look_stick[1])),
+            Bindings::spawn((
+                Spawn(map.look_stick[0]),
+                Spawn((map.look_stick[1], SwizzleAxis::YXZ)),
+            )),
         ))
         .id();
     cmds.entity(player).insert((
@@ -353,19 +359,19 @@ pub fn spawn_als_actions(cmds: &mut Commands, player: Entity, map: &AlsInputMap)
                     Action::<NextOverlayModeAction>::new(),
                     Down::default(),
                     Clamp::pos(),
-                    bindings![
-                        GamepadButton::DPadUp,
-                        (Binding::mouse_wheel(), SwizzleAxis::YXZ),
-                    ],
+                    Bindings::spawn((
+                        Spawn(Binding::from(GamepadButton::DPadUp)),
+                        Spawn((Binding::mouse_wheel(), SwizzleAxis::YXZ)),
+                    )),
                 ),
                 (
                     Action::<PreviousOverlayModeAction>::new(),
                     Down::default(),
                     Clamp::pos(),
-                    bindings![
-                        GamepadButton::DPadDown,
-                        (Binding::mouse_wheel(), SwizzleAxis::YXZ, Negate::x()),
-                    ],
+                    Bindings::spawn((
+                        Spawn(Binding::from(GamepadButton::DPadDown)),
+                        Spawn((Binding::mouse_wheel(), SwizzleAxis::YXZ, Negate::x())),
+                    )),
                 ),
                 (
                     Action::<SlomoAction>::new(),

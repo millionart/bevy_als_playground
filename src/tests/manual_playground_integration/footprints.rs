@@ -244,7 +244,7 @@ fn drive_gpu(
         return;
     }
     if gpu.root.is_none() {
-        gpu.library = server.load("ALS/Data/Footstep/footprint.runtime.json");
+        gpu.library = server.load(bevy_als::als_asset_path("ALS/Data/Footstep/footprint.runtime.json"));
         let Some(library) = libraries.get(&gpu.library) else {
             return;
         };

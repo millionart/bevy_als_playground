@@ -1,3 +1,5 @@
+mod logging;
+
 use bevy_als::als::character::AlsCollisionLayer;
 use std::collections::HashSet;
 use std::num::NonZeroU8;
@@ -71,6 +73,7 @@ fn main() {
     let use_gpu_instances = !cfg!(all(target_os = "macos", target_arch = "aarch64"));
     app.add_plugins((
         DefaultPlugins
+            .set(logging::log_plugin())
             .set(AssetPlugin {
                 file_path: "assets".into(),
                 ..default()

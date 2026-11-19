@@ -1,3 +1,5 @@
+mod logging;
+
 use avian3d::prelude::{Collider, CollisionLayers, LayerMask, RigidBody};
 use bevy::{
     input::{InputSystems, mouse::AccumulatedMouseMotion},
@@ -12,7 +14,7 @@ use bevy_als::character_assembly::AlsPlayerCharacter;
 
 fn main() {
     App::new()
-        .add_plugins((DefaultPlugins, AlsPlugin))
+        .add_plugins((DefaultPlugins.set(logging::log_plugin()), AlsPlugin))
         .add_systems(Startup, setup)
         .add_systems(PreUpdate, drive_character.after(InputSystems))
         .run();
