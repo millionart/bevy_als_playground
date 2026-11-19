@@ -1,3 +1,4 @@
+use bevy::ecs::schedule::ScheduleLabel;
 use std::{
     collections::{BTreeMap, BTreeSet},
     fs,
@@ -817,6 +818,8 @@ impl Plugin for AnimationVisualValidationPlugin {
         let Some(config) = AnimationVisualValidationConfig::from_environment() else {
             return;
         };
+        let physics = app.world().get_resource::<bevy_als::AlsPhysicsSchedule>()
+            .map_or_else(|| PostUpdate.intern(), |schedule| schedule.label());
         app.insert_resource(config)
             .insert_resource(bevy_als::foot_ik_apply::AlsFootIkTelemetryEnabled(true))
             .init_resource::<AnimationVisualValidationState>()
@@ -825,13 +828,13 @@ impl Plugin for AnimationVisualValidationPlugin {
             .init_resource::<AnimationVisualPreRigPose>()
             .add_systems(First, animation_cpu_frame_start)
             .add_systems(
-                PostUpdate,
+                physics,
                 animation_eval_start
                     .after(bevy_als::extensions::post_physics_animation::PostPhysicsAnimationSet::Inputs)
                     .before(bevy_als::extensions::post_physics_animation::PostPhysicsAnimationSet::Evaluate),
             )
             .add_systems(
-                PostUpdate,
+                physics,
                 animation_eval_end.after(bevy_als::extensions::post_physics_animation::PostPhysicsAnimationSet::Evaluate)
                     .before(AnimationGraphSet::PostPhysics),
             )
@@ -868,23 +871,23 @@ impl Plugin for AnimationVisualValidationPlugin {
                 abort_stalled_animation_visual_validation.after(update_animation_visual_progress),
             )
             .add_systems(
-                PostUpdate,
+                physics,
                 animation_visual_physics_start.before(PhysicsSystems::First),
             )
             .add_systems(
-                PostUpdate,
+                physics,
                 animation_visual_physics_step_start
                     .after(PhysicsSystems::Prepare)
                     .before(PhysicsSystems::StepSimulation),
             )
             .add_systems(
-                PostUpdate,
+                physics,
                 animation_visual_physics_step_end
                     .after(PhysicsSystems::StepSimulation)
                     .before(PhysicsSystems::Writeback),
             )
             .add_systems(
-                PostUpdate,
+                physics,
                 animation_visual_physics_end.after(PhysicsSystems::Last),
             )
             .add_systems(

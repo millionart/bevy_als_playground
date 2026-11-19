@@ -1,3 +1,4 @@
+use bevy_als::AlsPhysicsSchedule;
 use std::{sync::LazyLock, time::Duration};
 
 use bevy::{ecs::system::RunSystemOnce, prelude::*, time::TimeUpdateStrategy};
@@ -22,7 +23,7 @@ pub(crate) static SOURCE_LIBRARY: LazyLock<OverlayLibrary> = LazyLock::new(|| {
     .expect("ALS overlay definitions")
 });
 
-pub(crate) fn headless_app() -> App {
+pub(crate) fn headless_app(schedule: AlsPhysicsSchedule) -> App {
     let mut app = App::new();
     app.register_required_components::<bevy_als::character_assembly::AlsCharacterAvatar, bevy_als::animation_visibility::AlsAnimationTickOption>();
     app.add_plugins((
@@ -40,6 +41,8 @@ pub(crate) fn headless_app() -> App {
     .init_asset::<Image>()
     .init_asset::<StandardMaterial>()
     .init_asset::<bevy::mesh::skinning::SkinnedMeshInverseBindposes>()
+    .insert_resource(schedule)
+    .insert_resource(Time::<Fixed>::from_duration(Duration::from_secs_f32(1.0 / 60.0)))
     .add_plugins((AlsPlugin, AlsInputPlugin))
     .insert_resource(TimeUpdateStrategy::ManualDuration(Duration::from_secs_f32(
         1.0 / 60.0,
@@ -47,8 +50,8 @@ pub(crate) fn headless_app() -> App {
     app
 }
 
-fn camera_scene() -> (App, Entity, Entity, Handle<AnimatedScene>) {
-    let mut app = headless_app();
+fn camera_scene(schedule: AlsPhysicsSchedule) -> (App, Entity, Entity, Handle<AnimatedScene>) {
+    let mut app = headless_app(schedule);
     app.insert_resource(TimeUpdateStrategy::ManualDuration(Duration::from_millis(
         100,
     )));
@@ -104,7 +107,11 @@ fn camera_scene() -> (App, Entity, Entity, Handle<AnimatedScene>) {
 }
 
 pub(crate) fn loaded_camera_scene() -> (App, Entity, Entity, Handle<AnimatedScene>) {
-    let (mut app, character, component, scene) = camera_scene();
+    load_camera_scene(AlsPhysicsSchedule::default())
+}
+
+fn load_camera_scene(schedule: AlsPhysicsSchedule) -> (App, Entity, Entity, Handle<AnimatedScene>) {
+    let (mut app, character, component, scene) = camera_scene(schedule);
     let deadline = std::time::Instant::now() + std::time::Duration::from_secs(40);
     loop {
         app.update();
@@ -172,10 +179,14 @@ fn ready_roll_player(app: &mut App, avatar: Entity) -> Entity {
 }
 
 pub(crate) fn loaded_character() -> (App, Entity, Entity) {
+    loaded_character_with_schedule(AlsPhysicsSchedule::default())
+}
+
+pub(crate) fn loaded_character_with_schedule(schedule: AlsPhysicsSchedule) -> (App, Entity, Entity) {
     use bevy_als::character_assembly::{
         AlsCharacterAssembly, AlsCharacterBlueprint, spawn_als_character,
     };
-    let (mut app, _, _, _) = loaded_camera_scene();
+    let (mut app, _, _, _) = load_camera_scene(schedule);
     app.insert_resource(bevy::time::TimeUpdateStrategy::ManualDuration(
         std::time::Duration::from_secs_f32(1.0 / 60.0),
     ));

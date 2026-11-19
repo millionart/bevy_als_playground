@@ -46,7 +46,8 @@ use bevy_als::extensions::{
     ALS_LAYER_CURVE_NAMES, RagdollCollisionMember, RagdollPhysicsProfile,
     RagdollPhysicsProfileApplied, SourcePhysicsJoint,
 };
-use avian3d::prelude::{Collider, CollisionLayers, LinearVelocity, Position, RigidBody, Rotation};
+use avian3d::prelude::{Collider, CollisionLayers, LinearVelocity, Physics, Position, RigidBody, Rotation};
+use bevy::ecs::schedule::ScheduleLabel;
 use bevy::animation::AnimationTargetId;
 use bevy::ecs::message::{MessageReader, MessageWriter};
 use bevy::ecs::system::SystemParam;
@@ -764,24 +765,42 @@ pub struct ManualIntegrationGateReport {
 pub struct ManualIntegrationObservationSet;
 
 #[derive(SystemParam)]
-struct ManualObservationResources<'w> {
+struct ManualObservationResources<'w, 's> {
     state: ResMut<'w, ManualIntegrationState>,
     animation_window: ResMut<'w, ManualAnimationWindowEvidence>,
     gate_report: ResMut<'w, ManualIntegrationGateReport>,
+    physics_schedule: Option<Res<'w, bevy_als::AlsPhysicsSchedule>>,
+    physics_clock: Option<Res<'w, Time<Physics>>>,
+    last_montage_observation: Local<'s, Duration>,
 }
 
 pub struct ManualPlaygroundIntegrationPlugin;
 
 impl Plugin for ManualPlaygroundIntegrationPlugin {
     fn build(&self, app: &mut App) {
+        let schedule = app.world().get_resource::<bevy_als::AlsPhysicsSchedule>().copied();
+        let physics = schedule.map_or_else(|| PostUpdate.intern(), |schedule| schedule.label());
+        if matches!(schedule, Some(bevy_als::AlsPhysicsSchedule::Avian(_))) {
+            app.add_systems(
+                physics,
+                prepare_get_up_physics_fixture.before(bevy_als::als::motion::AlsLocomotionUpdateSet),
+            );
+        } else {
+            app.add_systems(
+                physics,
+                prepare_get_up_physics_fixture
+                    .after(bevy_als::extensions::RagdollAngularDriveSet)
+                    .before(avian3d::prelude::PhysicsSystems::First),
+            );
+        }
         app.init_resource::<ManualPlaygroundStartupReady>()
             .init_resource::<ManualIntegrationState>()
             .init_resource::<ManualAnimationWindowEvidence>()
             .init_resource::<ManualRuntimePhaseEvidence>()
             .init_resource::<ManualIntegrationGateReport>()
             .add_systems(
-                Update,
-                initialize_manual_integration.before(bevy_als::als::view::AlsViewInputSet),
+                PreUpdate,
+                initialize_manual_integration.before(drive_manual_integration),
             )
             .add_systems(
                 PreUpdate,
@@ -817,7 +836,7 @@ impl Plugin for ManualPlaygroundIntegrationPlugin {
                     .in_set(ManualIntegrationObservationSet),
             )
             .add_systems(
-                PostUpdate,
+                physics,
                 stairs::capture_move_prefix
                     .run_if(|state: Res<ManualIntegrationState>| {
                         state.phase == IntegrationPhase::Stairs
@@ -845,18 +864,12 @@ impl Plugin for ManualPlaygroundIntegrationPlugin {
                     .in_set(ManualIntegrationObservationSet),
             )
             .add_systems(
-                PostUpdate,
+                physics,
                 (drive_control_rig_view_offset, drive_manual_rig_curves)
                     .after(avian3d::prelude::PhysicsSystems::Last)
                     .before(
                         bevy_als::extensions::post_physics_animation::PostPhysicsAnimationSet::Inputs,
                     ),
-            )
-            .add_systems(
-                PostUpdate,
-                prepare_get_up_physics_fixture
-                    .after(bevy_als::extensions::RagdollAngularDriveSet)
-                    .before(avian3d::prelude::PhysicsSystems::First),
             )
             .add_systems(
                 PostUpdate,
@@ -5290,6 +5303,7 @@ fn get_up_fixture_rotation(facing_up: bool, yaw: f32) -> Quat {
 }
 
 fn prepare_get_up_physics_fixture(
+    schedule: Option<Res<bevy_als::AlsPhysicsSchedule>>,
     mut state: ResMut<ManualIntegrationState>,
     mut phase: ResMut<ManualRuntimePhaseEvidence>,
     characters: Query<&AlsNotifyLocomotionAction, With<AlsCharacter>>,
@@ -5310,6 +5324,11 @@ fn prepare_get_up_physics_fixture(
     if state.scenario != IntegrationScenario::GetUp
         || state.get_up_fixture_seeded
         || state.phase != IntegrationPhase::Ragdoll
+    {
+        return;
+    }
+    if matches!(schedule.as_deref(), Some(bevy_als::AlsPhysicsSchedule::Avian(_)))
+        && !state.ragdoll_exit_requested
     {
         return;
     }
@@ -9797,6 +9816,19 @@ fn observe_manual_integration(
     cameras: Query<(&Transform, &AlsCameraDebugInfo), With<AlsCameraRig>>,
     mut exit: MessageWriter<AppExit>,
 ) {
+    let montage_time = if matches!(
+        observation.physics_schedule.as_deref(),
+        Some(bevy_als::AlsPhysicsSchedule::Avian(_))
+    ) {
+        let elapsed = observation.physics_clock.as_ref().map(|time| time.elapsed());
+        elapsed.filter(|elapsed| {
+            let previous = *observation.last_montage_observation;
+            *observation.last_montage_observation = *elapsed;
+            *elapsed > previous
+        }).map(|elapsed| elapsed.as_secs_f64())
+    } else {
+        Some(interface.virtual_time.elapsed_secs_f64())
+    };
     let (state, mut animation_window, gate_report) = (
         &mut observation.state,
         &mut observation.animation_window,
@@ -12605,6 +12637,7 @@ fn observe_manual_integration(
             && state.phase == IntegrationPhase::Mantle
             && mantle.active
             && mantle.root_motion_ready
+            && let Some(montage_time) = montage_time
         {
             let dilation = ragdoll_probe
                 .get_ups
@@ -12613,7 +12646,7 @@ fn observe_manual_integration(
                 .and_then(|(_, _, dilation)| dilation)
                 .map_or(1.0, |value| value.0);
             gate_report.direction_trace.push(serde_json::json!({
-                "mantle_actor_clock": true, "game_time": state.game_time_seconds,
+                "mantle_actor_clock": true, "game_time": montage_time,
                 "elapsed": mantle.time, "dilation": dilation,
                 "mantle_parent_world_valid": actor_world.is_some_and(|world|
                     world.translation().distance(transform.translation) > 0.5
@@ -13040,6 +13073,7 @@ fn observe_manual_integration(
         if state.scenario == IntegrationScenario::Grounded
             && state.phase == IntegrationPhase::Roll
             && roll.active
+            && let Some(montage_time) = montage_time
         {
             let dilation = ragdoll_probe
                 .get_ups
@@ -13048,7 +13082,7 @@ fn observe_manual_integration(
                 .and_then(|(_, _, dilation)| dilation)
                 .map_or(1.0, |value| value.0);
             gate_report.direction_trace.push(serde_json::json!({
-                "roll_actor_clock": true, "game_time": state.game_time_seconds,
+                "roll_actor_clock": true, "game_time": montage_time,
                 "elapsed": roll.time, "dilation": dilation
             }));
         }
@@ -13330,9 +13364,12 @@ fn observe_manual_integration(
     }
     if state.phase == IntegrationPhase::Ragdoll {
         if let Ok((Some(get_up), blocked, custom_dilation)) = ragdoll_probe.get_ups.get(character) {
-            if state.scenario == IntegrationScenario::GetUp && state.get_up_case == 0 {
+            if state.scenario == IntegrationScenario::GetUp
+                && state.get_up_case == 0
+                && let Some(montage_time) = montage_time
+            {
                 gate_report.direction_trace.push(serde_json::json!({
-                    "get_up_actor_clock": true, "game_time": state.game_time_seconds,
+                    "get_up_actor_clock": true, "game_time": montage_time,
                     "elapsed": get_up.elapsed, "dilation": custom_dilation.map_or(1.0, |value| value.0)
                 }));
             }

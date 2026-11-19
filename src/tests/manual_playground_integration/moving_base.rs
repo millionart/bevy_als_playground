@@ -72,15 +72,24 @@ fn exit_direction_ready(
 }
 
 pub(super) fn install(app: &mut App) {
+    let schedule = app.world().get_resource::<bevy_als::AlsPhysicsSchedule>().copied();
+    if let Some(bevy_als::AlsPhysicsSchedule::Avian(physics)) = schedule {
+        app.add_systems(
+            physics,
+            capture_mantle_base
+                .after(avian3d::prelude::PhysicsSystems::Prepare)
+                .before(avian3d::prelude::PhysicsSystems::StepSimulation),
+        );
+    } else {
+        app.add_systems(PreUpdate, capture_mantle_base.after(drive));
+    }
     app.add_systems(
-        Update,
+        PreUpdate,
         drive
             .run_if(|state: Res<ManualIntegrationState>| {
                 state.phase == IntegrationPhase::MovingBase
             })
-            .after(crate::playground_collision::playground_kinematic_velocity_bridge)
-            .before(bevy_als::als::view::AlsViewInputSet)
-            .before(bevy_als::als::input_request::input_state_request_system),
+            .after(super::drive_manual_integration),
     )
     .add_systems(
         PostUpdate,
@@ -283,7 +292,7 @@ pub(super) fn drive(
         (Entity, &Name, &PlaygroundKinematic, &GlobalTransform),
         Without<AlsCharacter>,
     >,
-    colliders: Query<(Entity, &Collider, &ColliderOf, &GlobalTransform), Without<AlsCharacter>>,
+    colliders: Query<(Entity, &Collider, &ColliderOf), Without<AlsCharacter>>,
     characters: Query<
         (
             &Transform,
@@ -329,22 +338,13 @@ pub(super) fn drive(
         begin_phase(&mut state, IntegrationPhase::Finish);
         return;
     }
-    state.moving_base_probe.mantle_base_before_physics = None;
     let Some((body, _, path, global)) = platform else {
         return;
     };
-    let Some((collider, shape, _, collider_world)) =
-        colliders.iter().find(|(_, _, owner, _)| owner.body == body)
+    let Some((collider, shape, _)) = colliders.iter().find(|(_, _, owner)| owner.body == body)
     else {
         return;
     };
-    state.moving_base_probe.mantle_base_before_physics = Some(AlsMantleTargetBase {
-        entity: collider,
-        translation: collider_world.translation(),
-        rotation: collider_world.rotation(),
-        scale: collider_world.scale(),
-        relative_location: true,
-    });
     let Ok((transform, position, velocity, yaw, pitch, stance, mode, handle)) =
         characters.get(character)
     else {
@@ -465,6 +465,28 @@ pub(super) fn drive(
     commands.entity(character).insert(AlsInputOverride(input));
     phase.phase = "MovingBase".to_owned();
     phase.elapsed_seconds = (now - state.moving_base_probe.since.unwrap_or(now)) as f32;
+}
+
+fn capture_mantle_base(
+    mut state: ResMut<ManualIntegrationState>,
+    platforms: Query<(Entity, &Name), With<PlaygroundKinematic>>,
+    colliders: Query<(Entity, &ColliderOf, &GlobalTransform), With<Collider>>,
+) {
+    if state.phase != IntegrationPhase::MovingBase {
+        return;
+    }
+    let object = object(state.scenario);
+    state.moving_base_probe.mantle_base_before_physics = platforms
+        .iter()
+        .find(|(_, name)| name.as_str() == object)
+        .and_then(|(body, _)| colliders.iter().find(|(_, owner, _)| owner.body == body))
+        .map(|(entity, _, world)| AlsMantleTargetBase {
+            entity,
+            translation: world.translation(),
+            rotation: world.rotation(),
+            scale: world.scale(),
+            relative_location: true,
+        });
 }
 
 pub(super) fn observe(
@@ -1116,7 +1138,7 @@ mod tests {
             state.phase = IntegrationPhase::MovingBase;
             state.moving_base_probe.failure = Some("fixture failure".to_owned());
         }
-        app.world_mut().run_schedule(Update);
+        app.world_mut().run_schedule(PreUpdate);
         assert_eq!(
             app.world().resource::<ManualIntegrationState>().phase,
             IntegrationPhase::Finish

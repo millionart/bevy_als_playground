@@ -11,7 +11,9 @@ use bevy_als::als::state::{AlsNotifyLocomotionAction, LocomotionState};
 use bevy_als::als::transition::{Dimension, StateTransitionEvent, StateValue, locomotion_mode_locked};
 use bevy_als::extensions::SceneQuery;
 use avian3d::prelude::SpatialQueryFilter;
+use bevy::ecs::schedule::ScheduleLabel;
 use bevy::prelude::*;
+use bevy_als::{AlsPhysicsSchedule, als::input::AlsStepInput};
 
 use bevy_als::character_assembly::{AlsCharacterBlueprint, spawn_als_character_with_materials};
 
@@ -90,13 +92,18 @@ pub struct AlsGameModePlugin;
 
 impl Plugin for AlsGameModePlugin {
     fn build(&self, app: &mut App) {
+        let prepare = match app.world().get_resource::<AlsPhysicsSchedule>() {
+            Some(AlsPhysicsSchedule::Avian(schedule)) => *schedule,
+            _ => Update.intern(),
+        };
         app.init_resource::<AlsGameModeRandom>()
             .init_resource::<AlsPlayerStartSettings>()
             .add_systems(
-                Update,
+                prepare,
                 admit_pending_players
                     .after(crate::player_start::AlsPlayerStartPrepared)
-                    .before(bevy_als::als::motion::AlsLocomotionUpdateSet),
+                    .before(bevy_als::als::motion::AlsLocomotionUpdateSet)
+                    .before(bevy_als::als::input_request::input_state_request_system),
             );
     }
 }
@@ -201,6 +208,7 @@ fn admit_pending_players(
     mut characters: Query<
         (
             Option<&mut crate::input::AlsInputCommand>,
+            Option<&mut AlsStepInput>,
             Option<&mut bevy_als::als::transition::AlsStateRequest>,
             &Transform,
             Option<&mut bevy_als::als::motion::AlsViewYaw>,
@@ -224,7 +232,7 @@ fn admit_pending_players(
         if let Some(previous) = previous
             && characters.contains(previous.character)
         {
-            if let Ok((input, request, transform, yaw, pitch, locomotion, mantle, action)) =
+            if let Ok((input, step_input, request, transform, yaw, pitch, locomotion, mantle, action)) =
                 characters.get_mut(previous.character)
             {
                 let forward = transform.forward().as_vec3();
@@ -238,6 +246,9 @@ fn admit_pending_players(
                     input.jump_pressed = false;
                     input.jump_held = false;
                     input.move_dir = Vec2::ZERO;
+                }
+                if let Some(mut step_input) = step_input {
+                    *step_input = AlsStepInput::default();
                 }
                 if let Some(mut request) = request {
                     request.locomotion_state =

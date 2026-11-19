@@ -74,7 +74,9 @@ fn actual_source_walking_stair_contact_consumes_each_segment_once() {
                     })
                 })
                 .collect();
-        let (mut app, character, _) = crate::test_support::loaded_character();
+        let (mut app, character, _) = crate::test_support::loaded_character_with_schedule(
+            bevy_als::AlsPhysicsSchedule::SourceFrameTiming,
+        );
         crate::playground_collision::PlaygroundCollisionPlugin.build(&mut app);
         let mut mesh = Mesh::new(
             bevy::render::render_resource::PrimitiveTopology::TriangleList,

@@ -574,7 +574,7 @@ dependencies = [
 [[package]]
 name = "bevy_als"
 version = "0.1.0"
-source = "git+https://github.com/millionart/bevy_als.git?rev=f9fdd8a56cad4b9f411ac405c8e6bf33a07e0f0f#f9fdd8a56cad4b9f411ac405c8e6bf33a07e0f0f"
+source = "git+https://github.com/millionart/bevy_als.git?rev=af954121d832fccb51ef8ccec1dab6d9039bc6c1#af954121d832fccb51ef8ccec1dab6d9039bc6c1"
 dependencies = [
  "avian3d",
  "bevy",

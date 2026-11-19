@@ -39,10 +39,10 @@ use bevy_als_playground::game_mode::{
 };
 use bevy_als::overlay_object::OverlayObjectPlugin;
 use bevy_als_playground::playground_collision::{
-    PlaygroundCollisionPlugin, PlaygroundMeshColliderBuilt, playground_kinematic_velocity_bridge,
+    PlaygroundCollisionPlugin, PlaygroundMeshColliderBuilt,
 };
 use bevy_als::show_debug_hud::AlsShowDebugHudPlugin;
-use bevy_als::AlsPlugin;
+use bevy_als::{AlsPhysicsSchedule, AlsPlugin};
 use bevy_als_playground::{
     PackedFootprintsPlugin,
     decal_diagnostics::DecalDiagnosticsPlugin,
@@ -97,6 +97,7 @@ fn main() {
         AlsInputPlugin,
         AlsGameModePlugin,
     ));
+    let physics = app.world().resource::<AlsPhysicsSchedule>().label();
     if !use_gpu_instances {
         use bevy::render::{
             RenderApp, RenderStartup,
@@ -186,14 +187,14 @@ fn main() {
             admit_completed_player.after(spawn_character_once),
             (enable_character_ssao_taa, render_effects_probe).chain(),
             character_material_probe,
-            platform_physics_probe.after(playground_kinematic_velocity_bridge),
+            platform_physics_probe,
             collision_parity_probe,
             auto_quit,
             screenshot_runner,
         ),
     )
     .add_systems(
-        PostUpdate,
+        physics,
         grounded_spawn_probe.after(bevy_als::als::motion::AlsActualVelocitySet),
     );
     if std::env::var("ALS_PLAYGROUND_STARTUP_VARIANT").as_deref() == Ok("multi_raised") {

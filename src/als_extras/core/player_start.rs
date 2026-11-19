@@ -1,3 +1,5 @@
+use bevy::ecs::schedule::ScheduleLabel;
+use bevy_als::AlsPhysicsSchedule;
 use bevy_als::extensions::SceneQuery;
 use avian3d::prelude::{Collider, SpatialQueryFilter};
 use bevy::prelude::*;
@@ -397,8 +399,12 @@ pub struct AlsPlayerStartPrepared;
 
 impl Plugin for AlsPlayerStartPlugin {
     fn build(&self, app: &mut App) {
+        let prepare = match app.world().get_resource::<AlsPhysicsSchedule>() {
+            Some(AlsPhysicsSchedule::Avian(schedule)) => *schedule,
+            _ => Update.intern(),
+        };
         app.init_resource::<AlsPlayerStartSettings>()
-            .add_systems(Update, prepare_player_starts.in_set(AlsPlayerStartPrepared));
+            .add_systems(prepare, prepare_player_starts.in_set(AlsPlayerStartPrepared));
     }
 }
 

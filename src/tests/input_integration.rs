@@ -369,7 +369,9 @@ fn roll_paused_tap_release_does_not_start_the_actual_roll_driver() {
     for gamepad_input in [false, true] {
         for speed in [1.0, 0.25] {
             for (case_index, steps) in cases.iter().enumerate() {
-                let mut app = crate::test_support::headless_app();
+                let mut app = crate::test_support::headless_app(
+                    bevy_als::AlsPhysicsSchedule::SourceFrameTiming,
+                );
                 app.insert_resource(TimeUpdateStrategy::ManualDuration(
                     std::time::Duration::from_millis(20),
                 ));

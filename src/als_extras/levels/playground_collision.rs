@@ -37,28 +37,38 @@ impl Plugin for PlaygroundCollisionPlugin {
         let [dynamic_friction, static_friction, restitution]: [f32;3] = serde_json::from_str(
             include_str!("../../../assets/ALSExtras/Levels/L_Als_Playground/default_physical_material.runtime.json"),
         ).expect("The imported source default physical material must parse");
+        let schedule = app
+            .world()
+            .get_resource::<bevy_als::AlsPhysicsSchedule>()
+            .copied();
         app.insert_resource(DefaultFriction(
             Friction::new(dynamic_friction).with_static_coefficient(static_friction),
         ))
         .insert_resource(DefaultRestitution(Restitution::new(restitution)))
         .init_resource::<PlaygroundMeshColliderCache>()
         .init_resource::<PlaygroundMovingCurve>()
-        .add_systems(
-            Update,
-            (
-                playground_moving_box_physics_bridge,
-                playground_mesh_physics_bridge,
+        .add_systems(Update, (playground_moving_box_physics_bridge, playground_mesh_physics_bridge));
+        if let Some(bevy_als::AlsPhysicsSchedule::Avian(schedule)) = schedule {
+            app.add_systems(
+                schedule,
+                playground_kinematic_velocity_bridge
+                    .after(PhysicsSystems::Prepare)
+                    .before(PhysicsSystems::StepSimulation),
+            );
+        } else {
+            app.add_systems(
+                Update,
                 playground_kinematic_velocity_bridge
                     .after(playground_moving_object_system)
                     .before(bevy_tnua::TnuaPipelineSystems::Sensors),
-            ),
-        )
-        .add_systems(
-            PostUpdate,
-            playground_kinematic_velocity_bridge
-                .after(PhysicsSystems::Prepare)
-                .before(PhysicsSystems::StepSimulation),
-        );
+            )
+            .add_systems(
+                PostUpdate,
+                playground_kinematic_velocity_bridge
+                    .after(PhysicsSystems::Prepare)
+                    .before(PhysicsSystems::StepSimulation),
+            );
+        }
     }
 }
 
@@ -89,7 +99,9 @@ struct PlaygroundMeshGeometry {
 }
 
 pub fn playground_kinematic_velocity_bridge(
-    time: Res<Time<Virtual>>,
+    time: Res<Time>,
+    virtual_time: Res<Time<Virtual>>,
+    schedule: Option<Res<bevy_als::AlsPhysicsSchedule>>,
     curve: Res<PlaygroundMovingCurve>,
     transforms: bevy::transform::helper::TransformHelper,
     mut platforms: Query<
@@ -104,10 +116,17 @@ pub fn playground_kinematic_velocity_bridge(
         With<PlaygroundMovingObject>,
     >,
 ) {
-    let delta = time
-        .delta()
-        .min(bevy_als::source_physics_timing::SOURCE_MAX_PHYSICS_DELTA)
-        .as_secs_f32();
+    let (elapsed, delta) = if matches!(schedule.as_deref(), Some(bevy_als::AlsPhysicsSchedule::Avian(_))) {
+        (time.elapsed_secs(), time.delta_secs())
+    } else {
+        (
+            virtual_time.elapsed_secs(),
+            virtual_time
+                .delta()
+                .min(bevy_als::source_physics_timing::SOURCE_MAX_PHYSICS_DELTA)
+                .as_secs_f32(),
+        )
+    };
     for (kinematic, position, mut rotation, parent, mut linear, mut angular) in &mut platforms {
         match kinematic.kind {
             PlaygroundKinematicKind::MoveSpline {
@@ -119,7 +138,7 @@ pub fn playground_kinematic_velocity_bridge(
                     &curve,
                     start,
                     end,
-                    time.elapsed_secs(),
+                    elapsed,
                     duration,
                 );
                 linear.0 = if delta > 0.0 {
@@ -139,7 +158,7 @@ pub fn playground_kinematic_velocity_bridge(
                 let target = parent_rotation
                     * crate::playground::rotating_object_rotation(
                         rate_yzx_radians,
-                        time.elapsed_secs(),
+                        elapsed,
                     );
                 let mut difference = (target * rotation.0.conjugate()).normalize();
                 if difference.w < 0.0 {

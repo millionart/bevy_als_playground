@@ -1,3 +1,4 @@
+use bevy::ecs::schedule::ScheduleLabel;
 use super::*;
 use bevy_als::extensions::{InterruptibleFsmNode, InterruptibleFsmState};
 
@@ -8,17 +9,17 @@ const GROUNDED_GRAPH: &str =
 
 pub(super) fn install(app: &mut App) {
     if std::env::var("ALS_MANUAL_MACHINE_WEIGHT").as_deref() == Ok("1") {
+        let physics = app.world().get_resource::<bevy_als::AlsPhysicsSchedule>()
+            .map_or_else(|| PostUpdate.intern(), |schedule| schedule.label());
         app.add_systems(
-            PostUpdate,
+            physics,
             drive_running
                 .after(bevy_als::gait_layer::AlsGaitLayerSet)
                 .before(bevy_als::ab_als_root::AlsRootGraphSet),
         );
         app.add_systems(
-            PostUpdate,
-            observe
-                .after(bevy_als::extensions::post_physics_animation::PostPhysicsAnimationSet::Evaluate)
-                .before(observe_manual_integration),
+            physics,
+            observe.after(bevy_als::extensions::post_physics_animation::PostPhysicsAnimationSet::Evaluate),
         );
     }
 }

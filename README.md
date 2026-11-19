@@ -8,7 +8,7 @@ A runnable example of a game using [bevy_als](https://github.com/millionart/bevy
 2. Register `.add_plugins((DefaultPlugins, bevy_als::AlsPlugin))` and call `bevy_als::spawn_als_character` in a startup system. The [character example](src/als_extras/levels/als_character.rs) shows the spawn call, camera, and an Avian floor.
 3. Write `AlsInputCommand` on each controlled actor from your input system in `PreUpdate`. Refresh values every frame and pulse `*_pressed` fields for one update. The character example maps WASD, mouse look, and jump with Bevy input resources.
 
-If you already have a camera, give it `bevy::core_pipeline::prepass::DepthPrepass` to render ALS footprints. If you already install Avian, use `AlsPlugin::physics_plugins()` to configure it.
+If you already have a camera, give it `bevy::core_pipeline::prepass::DepthPrepass` to render ALS footprints. ALS and the moving platforms use Avian’s default `FixedPostUpdate` schedule. To install Avian in your host, register `AlsPlugin::physics_plugins()` before ALS. For a custom physics schedule, insert `AlsPhysicsSchedule::new(schedule)` and use `AlsPlugin::physics_plugins_in(schedule)` if you install Avian yourself.
 
 For the full Playground bindings, see [the adapter](src/als_extras/core/input.rs) and [the app setup](src/als_extras/levels/manual_playground.rs). The app installs `AlsInputPlugin` and calls `spawn_als_actions` with `AlsInputMap::default()` for each local player. This adapter is where the app depends on Enhanced Input.
 

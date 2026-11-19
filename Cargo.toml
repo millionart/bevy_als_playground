@@ -34,7 +34,7 @@ incremental = false
 [dependencies]
 avian3d = { version = "0.8", default-features = false, features = ["3d", "debug-plugin", "parallel"] }
 bevy = { version = "0.20.1", features = ["file_watcher", "tga", "pbr_clustered_decals"] }
-bevy_als = { git = "https://github.com/millionart/bevy_als.git", rev = "f9fdd8a56cad4b9f411ac405c8e6bf33a07e0f0f" }
+bevy_als = { git = "https://github.com/millionart/bevy_als.git", rev = "af954121d832fccb51ef8ccec1dab6d9039bc6c1" }
 bevy_animation_graph = { git = "https://github.com/millionart/bevy_animation_graph", rev = "6d706f61c35a6cf7b1c96430a56ae46241b4d51f", features = ["physics_avian"] }
 bevy_enhanced_input = "0.27"
 bevy_gameplay_tag = { git = "https://github.com/millionart/bevy_gameplay_tag", rev = "30a41183ac0705e6b7b483d0a72f0ca70510327e" }
